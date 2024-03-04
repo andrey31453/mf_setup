@@ -1,0 +1,25 @@
+{
+	"name": "setup",
+	"dev_dependencies": ["@types/node", "ts-node", "tsconfig-paths"],
+	"dependencies": ["@types/node", "ts-node", "tsconfig-paths"],
+	"exclude_files": ["readme.md"],
+	"webpack": false,
+	"aliases": {
+		"~types": "types",
+		"~config": "config",
+		"~decorators": "decorators",
+		"~file_data_creators": "file_data_creators",
+		"~bd": "bd",
+		"~modules": "modules",
+		"~utils": "utils",
+		"~fs": "fs"
+	},
+	"exposes": {
+		"t1": "a1",
+		"t2": "a2",
+		"t3": "a3"
+	},
+	"remotes": {
+		"r1": "app1"
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"scripts": {
+		"init": "ts-node ./src/init.ts"
+	},
+	"dependencies": {
+"@types/node": "^20.11.21",
+"ts-node": "^10.9.2",
+"tsconfig-paths": "^4.2.0"
+}, 
+	"devDependencies": {
+"@types/node": "^20.11.21",
+"ts-node": "^10.9.2",
+"tsconfig-paths": "^4.2.0"
+}, 
+
+	"name": "setup",
+	"version": "1.0.0",
+	"license": "MIT"
+}
