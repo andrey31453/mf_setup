@@ -24,8 +24,8 @@ interface __i_file_manifest {
 	remotes: i_file_manifest_data
 	shared: string[]
 	services: 'all' | string[]
-	exclude_files: string[]
-	include_files: string[]
+	excludes: string[]
+	includes: string[]
 	aliases: i_aliases
 	src: string
 	dependencies: string[]

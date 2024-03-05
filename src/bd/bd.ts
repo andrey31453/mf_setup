@@ -7,6 +7,7 @@ import {
 import { paths, delimiters } from '~config'
 import { mk_file, read_dir, read_file } from '~fs'
 import { Path } from '~utils'
+import { Is_Need } from '~modules'
 
 //
 //
@@ -49,11 +50,19 @@ export class BD implements i_value<string[]> {
 export class all_BDs_data implements i_value<string[]> {
 	readonly value
 
-	constructor() {
+	constructor(private options: i__all_bds_data__props = {}) {
 		this.value = read_dir(paths.dir.bd)
+			.filter(this.filtered)
 			.map((p) => read_file(new Path(paths.dir.bd, p).value))
 			.map((d) => d.split(delimiters.data))
 			.flat()
 			.filter(Boolean)
+	}
+
+	private filtered = (path: string) => {
+		if (this.options.includes) return new RegExp('^' + path).test(path)
+		if (this.options.excludes) return new RegExp('^' + path).test(path)
+
+		return new Is_Need(this.options, dir_name).value
 	}
 }

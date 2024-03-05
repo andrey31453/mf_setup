@@ -7,6 +7,7 @@ export class Format implements i_format {
 
 	format = () => {
 		const generate_files = new all_BDs_data().value
+		console.log('generate_files: ', generate_files)
 
 		// TODO delete filtered
 		const filtered_files = generate_files

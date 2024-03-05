@@ -4,6 +4,7 @@ export type i_generate_data = {
 	absolute?: i_path
 	module?: i_path
 	dir?: i_path
+	not_gitignore?: i_path
 }
 
 export type i_generate_data_key = keyof i_generate_data

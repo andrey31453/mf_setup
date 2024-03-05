@@ -1,5 +1,5 @@
 import { i_manifest, i_data_creator } from '~types'
-import { remote_entry, react_packages } from '~config'
+import { remote_entry, react_packages, fsd_aliases } from '~config'
 import { Current_Manifest, SRC, Field_Value } from '~utils'
 
 //
@@ -76,6 +76,7 @@ module.exports = ({ dev }) => ({
 			new Field_Value({
 				field: 'alias',
 				value: m.aliases,
+				values: [m.aliases, m.fsd && fsd_aliases],
 				iterator: (aliase_value: string, aliase_key: string) =>
 					`'${aliase_key}': src + '${aliase_value}'`,
 				quotes: 'none',

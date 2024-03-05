@@ -1,5 +1,12 @@
 {
 	"name": "setup",
+	"react": false,
+	"webpack": false,
+	"default_scripts": false,
+	"fsd": false,
+	"scripts": {
+		"init": "ts-node ./src/init.ts"
+	},
 	"dev_dependencies": [
 		"@types/node",
 		"ts-node",
@@ -7,13 +14,7 @@
 		"child_process",
 		"prettier"
 	],
-	"exclude_files": ["readme.md"],
-	"react": false,
-	"default_scripts": false,
-	"scripts": {
-		"init": "ts-node ./src/init.ts"
-	},
-	"webpack": true,
+	"excludes": ["readme.md"],
 	"aliases": {
 		"~types": "types",
 		"~config": "config",

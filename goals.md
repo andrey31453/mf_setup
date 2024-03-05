@@ -1,5 +1,3 @@
-13. puppiteer for generate files
-
 14. bins
 
     - update - npm libs versions
@@ -16,7 +14,3 @@
       ??
     - fsd
       aliases
-
-
-# TODO src + './src/types'
-# TODO "~types": ["./src/./src/types"],

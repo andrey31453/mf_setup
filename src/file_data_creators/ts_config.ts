@@ -1,5 +1,6 @@
 import { i_manifest, i_data_creator } from '~types'
 import { SRC, Field_Value } from '~utils'
+import { fsd_aliases } from '~config'
 
 //
 //
@@ -19,7 +20,7 @@ export class TS_Config implements i_data_creator {
 		${
 			new Field_Value({
 				field: 'paths',
-				value: m.aliases,
+				values: [m.aliases, m.fsd && fsd_aliases],
 				iterator: (aliase_value: string, aliase_key: string) =>
 					`"${aliase_key}": ["${new SRC(m).value}/${aliase_value}"]`,
 			}).value

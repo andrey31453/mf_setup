@@ -14,12 +14,18 @@ import { BD } from './bd'
 
 export class Generate implements i_generate {
 	value = [] as i_generate_data[]
-	private recordable_keys: i_generate_data_key[] = ['absolute', 'dir']
+	private recordable_keys: i_generate_data_key[] = [
+		'absolute',
+		'dir',
+		'not_gitignore',
+	]
 
 	constructor(private name: i_bd_name) {}
 
 	add = (generate_data: i_generate_data) => {
-		if (exclude_for_generate_data.includes(generate_data.module)) return
+		if (exclude_for_generate_data.includes(generate_data.module)) {
+			this.value.push({ not_gitignore: generate_data.absolute })
+		}
 
 		this.value.push(generate_data)
 	}
