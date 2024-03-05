@@ -1,16 +1,16 @@
-import { i_value } from '~types'
+import { _value } from '~types'
 import { is_dir, is_file, read_dir } from '~fs'
 import { Path } from './path'
 
 const exclude_dirs = ['node_modules', 'src', '.git']
-type i_file_paths = string[]
+type _file_paths = string[]
 
 //
 //
 //
 
-export class Search_Files implements i_value<i_file_paths> {
-	readonly value: i_file_paths
+export class Search_Files implements _value<_file_paths> {
+	readonly value: _file_paths
 
 	private searching_files: string[] = []
 	private include_dirs: string[] = []
@@ -48,7 +48,7 @@ export class Search_Files implements i_value<i_file_paths> {
 				.filter(is_dir)
 		)
 
-	private create_value = (): i_file_paths =>
+	private create_value = (): _file_paths =>
 		this.include_dirs.length
 			? [
 					...this.searching_files,

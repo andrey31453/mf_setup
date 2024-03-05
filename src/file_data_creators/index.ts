@@ -1,5 +1,5 @@
 import { paths } from '~config'
-import { i_file_data_creator } from '~types'
+import { _file_data_creator } from '~types'
 import { Readme } from './readme'
 import { Gitignore } from './gitignore'
 import { Docker_Compose } from './docker_compose'
@@ -7,7 +7,7 @@ import { Webpack_Config } from './webpack_config'
 import { TS_Config } from './ts_config'
 import { Package } from './package'
 
-export const init_files: i_file_data_creator[] = [
+export const init_files: _file_data_creator[] = [
 	{
 		data_creator: new Readme(),
 		file_name: paths.file.readme,
@@ -34,7 +34,7 @@ export const init_files: i_file_data_creator[] = [
 	},
 ]
 
-export const gitignore_data_creator: i_file_data_creator = {
+export const gitignore_data_creator: _file_data_creator = {
 	data_creator: new Gitignore(),
 	file_name: paths.file.gitignore,
 }

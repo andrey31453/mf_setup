@@ -1,9 +1,9 @@
 import { Manifests, Copy_M_Dir, Generate_M_File, M_Env, Format } from '~modules'
 import { gitignore_data_creator } from '~file_data_creators'
 import { Generate } from '~bd'
-import { i_setup_params } from '~types'
+import { _setup_params } from '~types'
 
-export const setup = ({ bd_name, generates, copy }: i_setup_params) => {
+export const setup = ({ bd_name, generates, copy }: _setup_params) => {
 	const generate = new Generate(bd_name)
 	const manifests = new Manifests(new M_Env())
 

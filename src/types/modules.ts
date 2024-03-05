@@ -1,7 +1,7 @@
 import { Nullable } from './utils'
-import { i_manifest } from './data'
+import { _manifest } from './data'
 
-export interface i_create_m_file {
+export interface _create_m_file {
 	create(
 		create_data_method: Function,
 		file_name: string,
@@ -9,28 +9,28 @@ export interface i_create_m_file {
 	): void
 }
 
-export interface i_create_m_dir {
+export interface _create_m_dir {
 	create(dir_name: string): void
 }
 
-export interface i_copy_m_dir {
-	copy(dir_name: string): i_copy_m_dir
+export interface _copy_m_dir {
+	copy(dir_name: string): _copy_m_dir
 }
 
-export interface i_generate_m_dir {
-	generate(file_data_creators: i_file_data_creator[]): i_generate_m_dir
+export interface _generate_m_dir {
+	generate(file_data_creators: _file_data_creator[]): _generate_m_dir
 }
 
-export interface i_data_creator {
-	create(file_name: string, m: i_manifest, manifests?: i_manifest[]): string
+export interface _data_creator {
+	create(file_name: string, m: _manifest, manifests?: _manifest[]): string
 }
 
-export interface i_file_data_creator {
-	data_creator: i_data_creator
+export interface _file_data_creator {
+	data_creator: _data_creator
 	file_name: string
 }
 
-export interface i_create_m {
+export interface _create_m {
 	create_dir(dir_name: string): void
 
 	create_file(
@@ -40,6 +40,11 @@ export interface i_create_m {
 	): void
 }
 
-export interface i_format {
+export interface _format {
 	format(): void
+}
+
+export interface _is_need__props {
+	excludes?: string[]
+	includes?: string[]
 }

@@ -1,14 +1,14 @@
 import { paths } from '~config'
-import { i_manifest, i_value } from '~types'
+import { _manifest, _value } from '~types'
 
 //
 //
 //
 
-export class SRC implements i_value<string> {
+export class SRC implements _value<string> {
 	readonly value
 
-	constructor(m: i_manifest) {
+	constructor(m: _manifest) {
 		this.value = m.src || paths.dir.src
 	}
 }

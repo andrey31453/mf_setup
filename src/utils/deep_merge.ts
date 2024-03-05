@@ -1,7 +1,7 @@
 import { type_of, type_is, is_mergeable } from './type'
 import { deep_copy } from './deep_copy'
 
-type i_mergeable = [] | {}
+type _mergeable = [] | {}
 
 const get_last_believable_value = <T extends any, Return extends T | boolean>(
 	...values: T[]
@@ -11,7 +11,7 @@ const get_last_believable_value = <T extends any, Return extends T | boolean>(
 		<Return>false
 	) as unknown as Return
 
-const get_keys = <T extends i_mergeable>(...args: T[]): string[] => {
+const get_keys = <T extends _mergeable>(...args: T[]): string[] => {
 	const keys = new Set()
 	args.forEach((arg) => {
 		Object.keys(arg).forEach(keys.add, keys)
@@ -19,7 +19,7 @@ const get_keys = <T extends i_mergeable>(...args: T[]): string[] => {
 	return [...keys] as unknown as string[]
 }
 
-const get_init_result = <T extends i_mergeable>(...args: T[]) =>
+const get_init_result = <T extends _mergeable>(...args: T[]) =>
 	type_is(args[0], 'object') ? {} : []
 
 const merge_values = <T extends any>(...values: T[]) => {
@@ -42,7 +42,7 @@ const merge_values = <T extends any>(...values: T[]) => {
 //
 //
 
-export const deep_merge = <T extends i_mergeable>(...args: T[]): T => {
+export const deep_merge = <T extends _mergeable>(...args: T[]): T => {
 	return get_keys(...args).reduce(
 		(result, key) => {
 			const values = args.map((arg) => arg[<keyof T>key])

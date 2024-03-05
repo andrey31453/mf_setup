@@ -1,4 +1,4 @@
-import { i_value, i_m_env } from '~types'
+import { _value, _m_env } from '~types'
 import { Parse, Path } from '~utils'
 import { paths, home_dir } from '~config'
 import { read_file } from '~fs'
@@ -7,7 +7,7 @@ import { read_file } from '~fs'
 //
 //
 
-export class M_Env implements i_value<i_m_env> {
+export class M_Env implements _value<_m_env> {
 	readonly value
 
 	constructor() {

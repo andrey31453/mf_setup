@@ -1,8 +1,9 @@
 import {
-	i_generate_data,
-	i_generate_data_key,
-	i_bd_name,
-	i_value,
+	_generate_data,
+	_generate_data_key,
+	_bd_name,
+	_is_need__props,
+	_value,
 } from '~types'
 import { paths, delimiters } from '~config'
 import { mk_file, read_dir, read_file } from '~fs'
@@ -13,13 +14,13 @@ import { Is_Need } from '~modules'
 //
 //
 
-export class BD implements i_value<string[]> {
+export class BD implements _value<string[]> {
 	readonly value
 
 	constructor(
-		private name: i_bd_name,
-		private key: i_generate_data_key,
-		private generate_data: i_generate_data[]
+		private name: _bd_name,
+		private key: _generate_data_key,
+		private generate_data: _generate_data[]
 	) {
 		this.value = this.read_bd()
 		this.set_bd()
@@ -47,10 +48,10 @@ export class BD implements i_value<string[]> {
 //
 //
 
-export class all_BDs_data implements i_value<string[]> {
+export class all_BDs_data implements _value<string[]> {
 	readonly value
 
-	constructor(private options: i__all_bds_data__props = {}) {
+	constructor(private options: _is_need__props = {}) {
 		this.value = read_dir(paths.dir.bd)
 			.filter(this.filtered)
 			.map((p) => read_file(new Path(paths.dir.bd, p).value))
@@ -60,9 +61,14 @@ export class all_BDs_data implements i_value<string[]> {
 	}
 
 	private filtered = (path: string) => {
-		if (this.options.includes) return new RegExp('^' + path).test(path)
-		if (this.options.excludes) return new RegExp('^' + path).test(path)
+		console.log('---- ---- ---- ----')
+		console.log('---- ---- ---- ----')
+		console.log('---- ---- ---- ----')
+		console.log('---- ---- ---- ----')
+		console.log('this.options: ', this.options)
+		console.log('path: ', path)
+		console.log('Is_Need: ', new Is_Need(this.options, path).value)
 
-		return new Is_Need(this.options, dir_name).value
+		return new Is_Need(this.options, path).value
 	}
 }

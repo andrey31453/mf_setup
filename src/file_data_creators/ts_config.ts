@@ -1,4 +1,4 @@
-import { i_manifest, i_data_creator } from '~types'
+import { _manifest, _data_creator } from '~types'
 import { SRC, Field_Value } from '~utils'
 import { fsd_aliases } from '~config'
 
@@ -6,13 +6,13 @@ import { fsd_aliases } from '~config'
 //
 //
 
-export class TS_Config implements i_data_creator {
+export class TS_Config implements _data_creator {
 	constructor() {}
 
 	create = (
 		file_name: string,
-		m: i_manifest,
-		manifests: i_manifest[]
+		m: _manifest,
+		manifests: _manifest[]
 	): string => {
 		return `{
 	"compileOnSave": false,

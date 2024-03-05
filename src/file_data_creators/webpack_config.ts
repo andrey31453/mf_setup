@@ -1,4 +1,4 @@
-import { i_manifest, i_data_creator } from '~types'
+import { _manifest, _data_creator } from '~types'
 import { remote_entry, react_packages, fsd_aliases } from '~config'
 import { Current_Manifest, SRC, Field_Value } from '~utils'
 
@@ -11,8 +11,8 @@ const iterators = {
 		`'./${expose_key}': src + '/${expose_value}'`,
 
 	remote:
-		(manifests: i_manifest[]) => (remote_value: string, remote_key: string) => {
-			const { port, domens }: i_manifest = new Current_Manifest(
+		(manifests: _manifest[]) => (remote_value: string, remote_key: string) => {
+			const { port, domens }: _manifest = new Current_Manifest(
 				manifests,
 				remote_value
 			).value
@@ -30,13 +30,13 @@ const iterators = {
 //
 //
 
-export class Webpack_Config implements i_data_creator {
+export class Webpack_Config implements _data_creator {
 	constructor() {}
 
 	create = (
 		file_name: string,
-		m: i_manifest,
-		manifests: i_manifest[]
+		m: _manifest,
+		manifests: _manifest[]
 	): string => `const src = path.join(__dirname, '${new SRC(m).value}')
 
 module.exports = ({ dev }) => ({

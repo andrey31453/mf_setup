@@ -1,4 +1,4 @@
-import { i_manifest, i_data_creator, i_value } from '~types'
+import { _manifest, _data_creator, _value } from '~types'
 import { paths } from '~config'
 import { all_BDs_data } from '~bd'
 
@@ -6,7 +6,7 @@ import { all_BDs_data } from '~bd'
 //
 //
 
-class Generates implements i_value<string> {
+class Generates implements _value<string> {
 	readonly value
 	constructor(bds_data: string[]) {
 		this.value = bds_data.join('\n')
@@ -17,10 +17,10 @@ class Generates implements i_value<string> {
 //
 //
 
-export class Gitignore implements i_data_creator {
+export class Gitignore implements _data_creator {
 	constructor() {}
 
-	create = (file_name: string, m: i_manifest): string => `package-lock.json
+	create = (file_name: string, m: _manifest): string => `package-lock.json
 node_modules
 
 # db
@@ -52,5 +52,5 @@ lerna-debug.log*
 
 # generate
 ${paths.dir.bd}
-${new Generates(new all_BDs_data().value).value}`
+${new Generates(new all_BDs_data({ excludes: ['not_gitignore'] }).value).value}`
 }

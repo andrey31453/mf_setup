@@ -1,33 +1,33 @@
 import { read_file } from '~fs'
 import { paths as p, home_dir, default_manifest } from '~config'
-import { i_file_manifest, i_manifest, i_value, i_m_env } from '~types'
+import { _file_manifest, _manifest, _value, _m_env } from '~types'
 import { Search_Files } from '~utils'
 
 //
 //
 //
 
-class File_Manifests implements i_value<i_file_manifest[]> {
-	readonly value: i_file_manifest[] = []
+class File_Manifests implements _value<_file_manifest[]> {
+	readonly value: _file_manifest[] = []
 
 	constructor(paths: string[]) {
 		this.value = paths.map(this.create_manifest)
 	}
 
-	private create_manifest = (module_path: string): i_file_manifest =>
-		read_file(module_path, 'json') as unknown as i_file_manifest
+	private create_manifest = (module_path: string): _file_manifest =>
+		read_file(module_path, 'json') as unknown as _file_manifest
 }
 
 //
 //
 //
 
-class Default_Manifest implements i_value<i_file_manifest> {
+class Default_Manifest implements _value<_file_manifest> {
 	readonly value
 
-	constructor(manifest: i_file_manifest) {
+	constructor(manifest: _file_manifest) {
 		this.value = Object.keys(default_manifest).reduce(
-			(acc, key: keyof i_file_manifest) => ({
+			(acc, key: keyof _file_manifest) => ({
 				...acc,
 				[key]: manifest[key] ?? default_manifest[key],
 			}),
@@ -41,10 +41,10 @@ class Default_Manifest implements i_value<i_file_manifest> {
 //
 
 let port_number = 0
-class Calculate_Manifest implements i_value<i_manifest> {
+class Calculate_Manifest implements _value<_manifest> {
 	readonly value
 
-	constructor(manifest_path: string, env: i_m_env) {
+	constructor(manifest_path: string, env: _m_env) {
 		this.value = {
 			path: manifest_path.replace(new RegExp(`/${p.file.manifest}`), ''),
 			port: +env.host_port + port_number++,
@@ -57,15 +57,15 @@ class Calculate_Manifest implements i_value<i_manifest> {
 //
 //
 
-export class Manifests implements i_value<i_manifest[]> {
-	readonly value: i_manifest[] = []
+export class Manifests implements _value<_manifest[]> {
+	readonly value: _manifest[] = []
 
-	constructor(m_env: i_value<i_m_env>) {
-		const manifest_paths: i_value<string[]> = new Search_Files(
+	constructor(m_env: _value<_m_env>) {
+		const manifest_paths: _value<string[]> = new Search_Files(
 			home_dir,
 			p.file.manifest
 		)
-		const manifests: i_value<i_file_manifest[]> = new File_Manifests(
+		const manifests: _value<_file_manifest[]> = new File_Manifests(
 			manifest_paths.value
 		)
 
@@ -78,9 +78,9 @@ export class Manifests implements i_value<i_manifest[]> {
 
 	private create_data = (
 		manifest_paths: string[],
-		manifests: i_file_manifest[],
-		env: i_m_env
-	): i_manifest[] =>
+		manifests: _file_manifest[],
+		env: _m_env
+	): _manifest[] =>
 		manifest_paths.reduce(
 			(data, manifest_path, i) => [
 				...data,
@@ -90,6 +90,6 @@ export class Manifests implements i_value<i_manifest[]> {
 					...manifests[i],
 				},
 			],
-			[] as i_manifest[]
+			[] as _manifest[]
 		)
 }

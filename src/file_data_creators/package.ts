@@ -1,4 +1,4 @@
-import { i_manifest, i_data_creator } from '~types'
+import { _manifest, _data_creator } from '~types'
 import { Field_Value } from '~utils'
 import {
 	packages,
@@ -11,13 +11,13 @@ import {
 //
 //
 
-export class Package implements i_data_creator {
+export class Package implements _data_creator {
 	constructor() {}
 
 	create = (
 		file_name: string,
-		m: i_manifest,
-		manifests: i_manifest[]
+		m: _manifest,
+		manifests: _manifest[]
 	): string => {
 		return `{
 	${

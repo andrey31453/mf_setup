@@ -1,10 +1,10 @@
-import { i_value } from '~types'
+import { _value } from '~types'
 
 //
 //
 //
 
-export class Path implements i_value<string> {
+export class Path implements _value<string> {
 	readonly value
 
 	constructor(...paths: string[]) {

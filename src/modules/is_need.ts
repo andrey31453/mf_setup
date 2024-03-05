@@ -1,4 +1,4 @@
-import { i_file_manifest, i_value, i_dir } from '~types'
+import { _file_manifest, _value, _dir, _is_need__props } from '~types'
 import { Path } from '~utils'
 import { d, webpack } from '~decorators'
 
@@ -6,40 +6,43 @@ import { d, webpack } from '~decorators'
 //
 //
 
-interface _all_bds_data__props {
-	excludes?: string[]
-	includes?: string[]
-}
-
-export class Is_Need implements i_value<boolean> {
+export class Is_Need implements _value<boolean> {
 	readonly value
 
-	constructor(manifest: _all_bds_data__props, ...paths: i_dir[]) {
-		const is_correct_file = this.is_need_method(manifest)
-		this.value = is_correct_file.call(this, manifest, paths)
+	constructor(props: _is_need__props, ...paths: _dir[]) {
+		// console.log('---- ---- ---- ----')
+		// console.log('props: ', props.includes)
+		// console.log('props: ', props.excludes)
+		// console.log('paths: ', paths)
+		const need_method = this.need_method(props)
+		this.value = need_method.call(this, props, paths)
 	}
 
-	is_need_method = (manifest: _all_bds_data__props): Function =>
-		(manifest.includes && this.is_include_file) ||
-		(manifest.excludes && this.is_exclude_file) ||
+	need_method = ({ includes, excludes }: _is_need__props): Function =>
+		(includes && this.is_include_file) ||
+		(excludes && this.is_exclude_file) ||
 		(() => true)
 
 	@d(webpack)
-	is_include_file({ includes }: _all_bds_data__props, paths: i_dir[]): boolean {
+	is_include_file({ includes }: _is_need__props, paths: _dir[]): boolean {
+		// console.log('---- ---- ---- ----')
+		// console.log('includes: ', includes)
+		// console.log('paths: ', paths)
+		// console.log('test: ', this.test(includes, paths))
 		return this.test(includes, paths)
 	}
 
 	@d(webpack)
-	is_exclude_file({ excludes }: _all_bds_data__props, paths: i_dir[]): boolean {
+	is_exclude_file({ excludes }: _is_need__props, paths: _dir[]): boolean {
+		console.log('---- ---- ---- ----')
+		console.log('excludes: ', excludes)
+		console.log('paths: ', paths)
+		console.log('test: ', this.test(excludes, paths))
 		return !this.test(excludes, paths)
 	}
 
-	test = (data: string[], paths: i_dir[]) => {
-		const path = new Path(...paths).value
-
-		return data.reduce(
-			(test, data_elem) => test || new RegExp('^' + path).test(data_elem),
-			false
-		)
-	}
+	test = (data: string[], paths: _dir[]) =>
+		data.reduce((test, data_elem) => {
+			return test || new RegExp(data_elem).test(new Path(...paths).value)
+		}, false)
 }

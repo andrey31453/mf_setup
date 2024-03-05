@@ -1,6 +1,6 @@
-import { i_file_manifest } from '~types'
+import { _file_manifest } from '~types'
 
-export const default_manifest: i_file_manifest = {
+export const default_manifest: _file_manifest = {
 	react: true,
 	fsd: true,
 	webpack: true,

@@ -5,7 +5,7 @@ export const delimiters = {
 	file: '.',
 }
 
-export const exclude_for_generate_data = [
+export const not_gitignore = [
 	paths.file.gitignore,
 	paths.file.readme,
 	paths.dir.bd,

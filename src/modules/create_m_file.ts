@@ -1,10 +1,10 @@
 import {
-	i_create_m_file,
-	i_manifest,
+	_create_m_file,
+	_manifest,
 	Nullable,
-	i_value,
-	i_dir,
-	i_generate,
+	_value,
+	_dir,
+	_generate,
 } from '~types'
 import { mk_file } from '~fs'
 import { Is_Need } from './is_need'
@@ -14,23 +14,23 @@ import { With_Comment, Path } from '~utils'
 //
 //
 
-type i_create_file_params = {
-	dir: i_dir
+type _create_file_params = {
+	dir: _dir
 	file_name: string
 	file_data: string
-	m: i_manifest
+	m: _manifest
 }
 
-export class Create_M_File implements i_create_m_file {
+export class Create_M_File implements _create_m_file {
 	constructor(
-		private manifests: i_value<i_manifest[]>,
-		private generate: i_generate
+		private manifests: _value<_manifest[]>,
+		private generate: _generate
 	) {}
 
 	private file_path = (
-		manifests: i_manifest,
+		manifests: _manifest,
 		file_name: string,
-		dir: i_dir
+		dir: _dir
 	): [string, string] => [
 		new Path(manifests.path, dir, file_name).value,
 		new Path(dir, file_name).value,
@@ -47,7 +47,7 @@ export class Create_M_File implements i_create_m_file {
 		file_name,
 		file_data,
 		m,
-	}: i_create_file_params) => {
+	}: _create_file_params) => {
 		if (!new Is_Need(m, dir, file_name).value) return
 		if (!file_data) return
 
@@ -59,7 +59,7 @@ export class Create_M_File implements i_create_m_file {
 	private create_files_in_m = (
 		files_data: string[],
 		file_name: string,
-		dir: i_dir
+		dir: _dir
 	) => {
 		files_data.forEach((file_data, i) =>
 			this.create_file_in_m({

@@ -1,17 +1,17 @@
 import { comment_prefix, comments_without_prefix } from '~config'
-import { i_value } from '~types'
+import { _value } from '~types'
 
-type i_file_extension = keyof typeof comment_prefix
+type _file_extension = keyof typeof comment_prefix
 
 //
 //
 //
 
-class File_Extension implements i_value<i_file_extension> {
+class File_Extension implements _value<_file_extension> {
 	readonly value
 
 	constructor(file_name: string) {
-		this.value = file_name.match(/[^.]*$/g)[0] as unknown as i_file_extension
+		this.value = file_name.match(/[^.]*$/g)[0] as unknown as _file_extension
 	}
 }
 
@@ -19,10 +19,10 @@ class File_Extension implements i_value<i_file_extension> {
 //
 //
 
-class Prefix implements i_value<string | string[]> {
+class Prefix implements _value<string | string[]> {
 	readonly value
 
-	constructor(file_extension: i_value<i_file_extension>) {
+	constructor(file_extension: _value<_file_extension>) {
 		this.value = comment_prefix[file_extension.value] || null
 	}
 }
@@ -31,10 +31,10 @@ class Prefix implements i_value<string | string[]> {
 //
 //
 
-class Add_Prefix implements i_value<Function> {
+class Add_Prefix implements _value<Function> {
 	readonly value
 
-	constructor(prefix: i_value<string | string[]>) {
+	constructor(prefix: _value<string | string[]>) {
 		this.value = this.create_add_prefix(prefix.value)
 	}
 
@@ -59,11 +59,11 @@ class Add_Prefix implements i_value<Function> {
 //
 //
 
-class Comment implements i_value<string> {
+class Comment implements _value<string> {
 	readonly value
 
 	constructor(
-		add_prefix_method: i_value<Function>,
+		add_prefix_method: _value<Function>,
 		comments_without_prefix: string[]
 	) {
 		this.value = comments_without_prefix.reduce(
@@ -80,7 +80,7 @@ class Comment implements i_value<string> {
 //
 //
 
-export class With_Comment implements i_value<string> {
+export class With_Comment implements _value<string> {
 	readonly value
 
 	constructor(val: string, file_name: string) {

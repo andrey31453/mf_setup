@@ -1,18 +1,18 @@
-type i_path = string
+type _path = string
 
-export type i_generate_data = {
-	absolute?: i_path
-	module?: i_path
-	dir?: i_path
-	not_gitignore?: i_path
+export type _generate_data = {
+	absolute?: _path
+	module?: _path
+	dir?: _path
+	not_gitignore?: _path
 }
 
-export type i_generate_data_key = keyof i_generate_data
+export type _generate_data_key = keyof _generate_data
 
-export interface i_generate {
-	value: i_generate_data[]
-	add: (data: i_generate_data) => void
+export interface _generate {
+	value: _generate_data[]
+	add: (data: _generate_data) => void
 	set: () => void
 }
 
-export type i_bd_name = 'init' | 'update'
+export type _bd_name = 'init' | 'update'

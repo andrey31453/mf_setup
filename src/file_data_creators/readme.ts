@@ -1,15 +1,15 @@
-import { i_manifest, i_data_creator } from '~types'
+import { _manifest, _data_creator } from '~types'
 
 //
 //
 //
 
-export class Readme implements i_data_creator {
+export class Readme implements _data_creator {
 	constructor() {}
 
 	create = (
 		fn: string,
-		manifest: i_manifest
+		manifest: _manifest
 	): string => `## microfrontend ${manifest.name}
 
 ## git

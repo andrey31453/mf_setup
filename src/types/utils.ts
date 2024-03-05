@@ -1,10 +1,10 @@
 export type Nullable<T> = T | null | undefined
 
-export interface i_value<T> {
+export interface _value<T> {
 	readonly value: T
 }
 
-export type i_nullable_data = Nullable<
+export type _nullable_data = Nullable<
 	| any[]
 	| {
 			[key: string]: any

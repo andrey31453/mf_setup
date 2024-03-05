@@ -1,4 +1,4 @@
-import { i_manifest, i_data_creator, i_value } from '~types'
+import { _manifest, _data_creator, _value } from '~types'
 import { tab_before, tab_after, d } from '~decorators'
 import { is_file } from '~fs'
 import { Path } from '~utils'
@@ -7,10 +7,10 @@ import { Path } from '~utils'
 //
 //
 
-class Sub_Services implements i_value<i_manifest[]> {
+class Sub_Services implements _value<_manifest[]> {
 	readonly value
 
-	constructor(current_manifests: i_manifest, manifests: i_manifest[]) {
+	constructor(current_manifests: _manifest, manifests: _manifest[]) {
 		this.value = manifests.filter((m) =>
 			new RegExp(current_manifests.path).test(m.path)
 		)
@@ -21,10 +21,10 @@ class Sub_Services implements i_value<i_manifest[]> {
 //
 //
 
-class Has_Docker implements i_value<i_manifest[]> {
+class Has_Docker implements _value<_manifest[]> {
 	readonly value
 
-	constructor(sub_services: i_manifest[], dockerfile: string) {
+	constructor(sub_services: _manifest[], dockerfile: string) {
 		this.value = sub_services.filter((sub_service) =>
 			is_file(new Path(sub_service.path, dockerfile).value)
 		)
@@ -35,12 +35,12 @@ class Has_Docker implements i_value<i_manifest[]> {
 //
 //
 
-class Services_With_Docker implements i_value<i_manifest[]> {
+class Services_With_Docker implements _value<_manifest[]> {
 	readonly value
 
 	constructor(
-		current_manifests: i_manifest,
-		manifests: i_manifest[],
+		current_manifests: _manifest,
+		manifests: _manifest[],
 		dockerfile: string
 	) {
 		const sub_services = new Sub_Services(current_manifests, manifests).value
@@ -56,7 +56,7 @@ class Services_With_Docker implements i_value<i_manifest[]> {
 //
 //
 
-interface i_service_params {
+interface _service_params {
 	port: string
 	name: string
 	workdir: string
@@ -64,10 +64,10 @@ interface i_service_params {
 	dockerfile: string
 }
 
-class Services implements i_value<string> {
+class Services implements _value<string> {
 	readonly value
 
-	constructor(m: i_manifest, manifests: i_manifest[], dockerfile: string) {
+	constructor(m: _manifest, manifests: _manifest[], dockerfile: string) {
 		this.value = manifests
 			.map((manifest) =>
 				this.service(this.service_params(m, manifest, dockerfile))
@@ -76,10 +76,10 @@ class Services implements i_value<string> {
 	}
 
 	private service_params = (
-		m: i_manifest,
-		manifest: i_manifest,
+		m: _manifest,
+		manifest: _manifest,
 		dockerfile: string
-	): i_service_params => ({
+	): _service_params => ({
 		name: `s_${manifest.name}`,
 		port: `${manifest.port}`,
 		workdir: `/mf/${manifest.name}`,
@@ -95,7 +95,7 @@ class Services implements i_value<string> {
 		workdir,
 		context,
 		dockerfile,
-	}: i_service_params): string {
+	}: _service_params): string {
 		return `${name}:
 		build:
 			context: ${context}
@@ -115,13 +115,13 @@ class Services implements i_value<string> {
 //
 //
 
-export class Docker_Compose implements i_data_creator {
+export class Docker_Compose implements _data_creator {
 	constructor(private dockerfile: string) {}
 
 	create = (
 		file_name: string,
-		m: i_manifest,
-		manifests: i_manifest[]
+		m: _manifest,
+		manifests: _manifest[]
 	): string => {
 		const services_with_docker = new Services_With_Docker(
 			m,

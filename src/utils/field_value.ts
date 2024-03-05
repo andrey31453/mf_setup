@@ -1,4 +1,4 @@
-import { i_value, i_nullable_data } from '~types'
+import { _value, _nullable_data } from '~types'
 import { quotes } from '~config'
 import {
 	d,
@@ -16,22 +16,22 @@ import { is_mergeable } from './type'
 //
 //
 
-class __Union_Values implements i_value<i_nullable_data> {
+class __Union_Values implements _value<_nullable_data> {
 	readonly value
 
-	constructor({ value, values }: i_feild_value_params) {
+	constructor({ value, values }: _feild_value_params) {
 		this.value = value || this.values(values)
 	}
 
-	private values = (values: i_nullable_data[]) =>
+	private values = (values: _nullable_data[]) =>
 		this.merged_values(this.formated_values(this.filtered_values(values)))
 
-	private filtered_values = (values: i_nullable_data[]): i_nullable_data[] =>
+	private filtered_values = (values: _nullable_data[]): _nullable_data[] =>
 		values?.filter(Boolean)
 
 	private formated_values = (
-		filtered_values: i_nullable_data[]
-	): i_nullable_data[] => {
+		filtered_values: _nullable_data[]
+	): _nullable_data[] => {
 		if (!filtered_values) return null
 		if (!filtered_values.length) return null
 
@@ -39,8 +39,8 @@ class __Union_Values implements i_value<i_nullable_data> {
 	}
 
 	private merged_values = (
-		formated_values: i_nullable_data[]
-	): i_nullable_data[] => {
+		formated_values: _nullable_data[]
+	): _nullable_data[] => {
 		if (!is_mergeable(formated_values)) return formated_values
 
 		// @ts-ignore
@@ -52,26 +52,26 @@ class __Union_Values implements i_value<i_nullable_data> {
 //
 //
 
-interface i_feild_value_params {
+interface _feild_value_params {
 	field: string
-	value?: i_nullable_data
-	values?: i_nullable_data[]
+	value?: _nullable_data
+	values?: _nullable_data[]
 	iterator: Function
 	quotes?: keyof typeof quotes
 }
 
-export class Field_Value implements i_value<string> {
+export class Field_Value implements _value<string> {
 	readonly value
 	private readonly quotes
 
-	constructor(params: i_feild_value_params) {
+	constructor(params: _feild_value_params) {
 		params.value = new __Union_Values(params).value
 
 		this.quotes = quotes[params.quotes] ?? quotes.double
 		this.value = this.working(params)
 	}
 
-	private working(params: i_feild_value_params): string {
+	private working(params: _feild_value_params): string {
 		if (!params.value) return ''
 
 		return this.field(
@@ -89,7 +89,7 @@ export class Field_Value implements i_value<string> {
 	@d(delete_last_comma)
 	@d(tab_before(0))
 	@d(tab_after(0))
-	private field_value(value: i_nullable_data, cb: Function): string {
+	private field_value(value: _nullable_data, cb: Function): string {
 		return iterator(value, cb).join(',\n')
 	}
 }
