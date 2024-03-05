@@ -15,7 +15,9 @@ export class Generate implements _generate {
 
 	add = (generate_data: _generate_data) => {
 		if (not_gitignore.includes(generate_data.module)) {
-			this.value.push({ not_gitignore: generate_data.absolute })
+			// this.value.push({
+			// 	not_gitignore: generate_data.absolute,
+			// })
 			return
 		}
 

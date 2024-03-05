@@ -15,6 +15,7 @@ export class Format implements _format {
 			.filter((s) => !/.dockerfile/.test(s))
 			.filter((s) => !/.eslintrc/.test(s))
 			.filter((s) => !/.prettierignore/.test(s))
+			.filter((s) => !/.gitignore/.test(s))
 			.join(' ')
 		execSync(
 			`npx prettier ${filtered_files} --write --ignore-path ./.prettierignore`,

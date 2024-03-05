@@ -31,6 +31,8 @@ lerna-debug.log*
 *.sublime-workspace
 /.vscode
 
+fsdfsdf
+
 # generate
 ./src/.bd
 ../host/.eslintrc

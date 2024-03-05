@@ -1,5 +1,6 @@
 {
 	"scripts": {
+		"init": "ts-node ./src/init.ts",
 		"init": "ts-node ./src/init.ts"
 	},
 	"devDependencies": {
