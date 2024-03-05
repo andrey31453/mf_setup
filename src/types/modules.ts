@@ -39,3 +39,7 @@ export interface i_create_m {
 		dir?: Nullable<string>
 	): void
 }
+
+export interface i_format {
+	format(): void
+}

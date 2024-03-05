@@ -30,7 +30,8 @@ interface __i_file_manifest {
 	src: string
 	dependencies: string[]
 	dev_dependencies: string[]
-	scripts: i_scripts[]
+	scripts: i_scripts
+	default_scripts: boolean
 }
 
 export type i_file_manifest = Partial<__i_file_manifest>

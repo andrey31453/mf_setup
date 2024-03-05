@@ -50,3 +50,6 @@ export const is_undefined = (target: any): target is undefined =>
 export const is_null = (target: any): target is null => target === null
 
 export const is_nan = (target: any): target is typeof NaN => target !== target
+
+export const is_mergeable = (...args: any[]): Boolean =>
+	is_object(args[0]) || is_array(args[0])

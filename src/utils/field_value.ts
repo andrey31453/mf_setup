@@ -9,6 +9,8 @@ import {
 	tab_before,
 } from '~decorators'
 import { iterator } from './iterator'
+import { deep_merge } from './deep_merge'
+import { is_mergeable } from './type'
 
 //
 //
@@ -18,12 +20,14 @@ class __Union_Values implements i_value<i_nullable_data> {
 	readonly value
 
 	constructor({ value, values }: i_feild_value_params) {
-		const filtered_values = this.filtered_values(values)
-		this.value = value || this.formated_values(filtered_values)
+		this.value = value || this.values(values)
 	}
 
+	private values = (values: i_nullable_data[]) =>
+		this.merged_values(this.formated_values(this.filtered_values(values)))
+
 	private filtered_values = (values: i_nullable_data[]): i_nullable_data[] =>
-		values?.filter(Boolean).flat()
+		values?.filter(Boolean)
 
 	private formated_values = (
 		filtered_values: i_nullable_data[]
@@ -32,6 +36,15 @@ class __Union_Values implements i_value<i_nullable_data> {
 		if (!filtered_values.length) return null
 
 		return filtered_values
+	}
+
+	private merged_values = (
+		formated_values: i_nullable_data[]
+	): i_nullable_data[] => {
+		if (!is_mergeable(formated_values)) return formated_values
+
+		// @ts-ignore
+		return deep_merge(...formated_values)
 	}
 }
 
@@ -67,16 +80,16 @@ export class Field_Value implements i_value<string> {
 		)
 	}
 
+	@d(comma_after)
+	private field(fileld: string, value: string): string {
+		return `${this.quotes}${fileld}${this.quotes}: ${value}`
+	}
+
 	@d(object_brackets)
 	@d(delete_last_comma)
 	@d(tab_before(0))
 	@d(tab_after(0))
 	private field_value(value: i_nullable_data, cb: Function): string {
 		return iterator(value, cb).join(',\n')
-	}
-
-	@d(comma_after)
-	private field(fileld: string, value: string): string {
-		return `${this.quotes}${fileld}${this.quotes}: ${value}`
 	}
 }

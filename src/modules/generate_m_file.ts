@@ -13,7 +13,10 @@ import { Create_M } from './create_m'
 //
 
 export class Generate_M_File extends Create_M implements i_generate_m_dir {
-	constructor(private manifests: i_value<i_manifest[]>, generate: i_generate) {
+	constructor(
+		private manifests: i_value<i_manifest[]>,
+		generate: i_generate
+	) {
 		super(manifests, generate)
 	}
 

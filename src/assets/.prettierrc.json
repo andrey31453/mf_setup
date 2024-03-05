@@ -3,7 +3,6 @@
 	"bracketSameLine": false,
 	"bracketSpacing": true,
 	"endOfLine": "auto",
-	"jsxBracketSameLine": false,
 	"jsxSingleQuote": true,
 	"printWidth": 80,
 	"quoteProps": "consistent",
@@ -13,6 +12,5 @@
 	"tabWidth": 2,
 	"trailingComma": "es5",
 	"useTabs": true,
-	"vueIndentScriptAndStyle": false,
-	"withNodeModules": true
+	"vueIndentScriptAndStyle": false
 }

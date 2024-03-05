@@ -18,12 +18,14 @@ export const comments_without_prefix = [
 
 export const remote_entry = 'remote_entry.js'
 
+// TODO extra?
 export const shared_react = {
 	react: {
 		singleton: true,
 	},
 }
 
+// TODO extra?
 export const shared_react_dom = {
 	'react-dom': {
 		singleton: true,

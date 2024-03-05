@@ -1,3 +1,6 @@
+// не переписывать
+// данный файл сгенерирован автоматически
+
 const { merge } = require('webpack-merge')
 
 const template = require('./webpack.config.template')

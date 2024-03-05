@@ -1,28 +1,22 @@
-8. package
-
-   - script
-   - type react
-
-9. bins
-
-   - update - npm libs versions
-   - gits
-
-10. aliases for npm packages
-
-11. extract @d in npm
-
-12. extract pipe in npm
-
 13. puppiteer for generate files
 
-14. manifest params
+14. bins
 
-    - webpack
-      package
-    - react
-      package
+    - update - npm libs versions
+
+15. aliases for npm packages
+
+16. extract @d in npm
+
+17. extract pipe in npm
+
+18. manifest params
+
     - npm
       ??
     - fsd
       aliases
+
+
+# TODO src + './src/types'
+# TODO "~types": ["./src/./src/types"],

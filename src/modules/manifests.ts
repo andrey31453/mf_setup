@@ -1,5 +1,5 @@
 import { read_file } from '~fs'
-import { paths as p, home_dir } from '~config'
+import { paths as p, home_dir, default_manifest } from '~config'
 import { i_file_manifest, i_manifest, i_value, i_m_env } from '~types'
 import { Search_Files } from '~utils'
 
@@ -24,18 +24,12 @@ class File_Manifests implements i_value<i_file_manifest[]> {
 
 class Default_Manifest implements i_value<i_file_manifest> {
 	readonly value
-	private readonly default_values: i_file_manifest = {
-		react: true,
-		fsd: true,
-		webpack: true,
-		npm: false,
-	}
 
 	constructor(manifest: i_file_manifest) {
-		this.value = Object.keys(this.default_values).reduce(
+		this.value = Object.keys(default_manifest).reduce(
 			(acc, key: keyof i_file_manifest) => ({
 				...acc,
-				[key]: manifest[key] ?? this.default_values[key],
+				[key]: manifest[key] ?? default_manifest[key],
 			}),
 			{}
 		)

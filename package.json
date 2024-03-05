@@ -1,18 +1,15 @@
 {
 	"scripts": {
-		"init": "ts-node ./src/init.ts"
-	},
-	"dependencies": {
-"@types/node": "^20.11.21",
-"ts-node": "^10.9.2",
-"tsconfig-paths": "^4.2.0"
+"init": "ts-node ./src/init.ts"
 }, 
+	
 	"devDependencies": {
-"@types/node": "^20.11.21",
-"ts-node": "^10.9.2",
-"tsconfig-paths": "^4.2.0"
+"webpack": "^5.75.0",
+"webpack-cli": "^5.0.1",
+"webpack-dev-server": "^4.11.1",
+"copy-webpack-plugin": "^11.0.0",
+"html-webpack-plugin": "^5.5.0"
 }, 
-
 	"name": "setup",
 	"version": "1.0.0",
 	"license": "MIT"

@@ -3,7 +3,7 @@ export const d = function (decorator: Function) {
 		This extends {},
 		Args extends any[],
 		Return,
-		Fn extends (this: This, ...args: Args) => Return
+		Fn extends (this: This, ...args: Args) => Return,
 	>(target: Fn, ctx: ClassMethodDecoratorContext<This, Fn>) {
 		return function (this: This, ...args: Args) {
 			const value = target.apply(this, args)

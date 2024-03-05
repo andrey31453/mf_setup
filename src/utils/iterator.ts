@@ -1,3 +1,5 @@
+// TODO add default accamulyator for object
+
 import { i_nullable_data } from '~types'
 import { is_array, is_nullable, is_object } from './type'
 

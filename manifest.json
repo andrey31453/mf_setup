@@ -1,9 +1,19 @@
 {
 	"name": "setup",
-	"dev_dependencies": ["@types/node", "ts-node", "tsconfig-paths"],
-	"dependencies": ["@types/node", "ts-node", "tsconfig-paths"],
+	"dev_dependencies": [
+		"@types/node",
+		"ts-node",
+		"tsconfig-paths",
+		"child_process",
+		"prettier"
+	],
 	"exclude_files": ["readme.md"],
-	"webpack": false,
+	"react": false,
+	"default_scripts": false,
+	"scripts": {
+		"init": "ts-node ./src/init.ts"
+	},
+	"webpack": true,
 	"aliases": {
 		"~types": "types",
 		"~config": "config",
@@ -12,6 +22,7 @@
 		"~bd": "bd",
 		"~modules": "modules",
 		"~utils": "utils",
+		"~bd": "bd",
 		"~fs": "fs"
 	},
 	"exposes": {

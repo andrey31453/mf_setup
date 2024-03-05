@@ -15,7 +15,10 @@ export class Search_Files implements i_value<i_file_paths> {
 	private searching_files: string[] = []
 	private include_dirs: string[] = []
 
-	constructor(private dirs: string[] | string, private file_name: string) {
+	constructor(
+		private dirs: string[] | string,
+		private file_name: string
+	) {
 		this.correct_input()
 		this.search_files()
 		this.search_include_dirs()
@@ -50,6 +53,6 @@ export class Search_Files implements i_value<i_file_paths> {
 			? [
 					...this.searching_files,
 					...new Search_Files(this.include_dirs, this.file_name).value,
-			  ]
+				]
 			: this.searching_files
 }

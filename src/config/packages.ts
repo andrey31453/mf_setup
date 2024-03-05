@@ -4,6 +4,21 @@ export const packages = {
 	'tsconfig-paths': '^4.2.0',
 	'react': '^4.2.0',
 	'react-dom': '^4.2.0',
+	'webpack': '^5.75.0',
+	'webpack-cli': '^5.0.1',
+	'webpack-dev-server': '^4.11.1',
+	'copy-webpack-plugin': '^11.0.0',
+	'html-webpack-plugin': '^5.5.0',
+	'prettier': '^3.2.5',
+	'child_process': '^1.0.2',
 }
 
 export const react_packages = ['react', 'react-dom']
+
+export const webpack_packages = [
+	'webpack',
+	'webpack-cli',
+	'webpack-dev-server',
+	'copy-webpack-plugin',
+	'html-webpack-plugin',
+]

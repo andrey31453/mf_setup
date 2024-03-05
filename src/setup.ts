@@ -1,4 +1,4 @@
-import { Manifests, Copy_M_Dir, Generate_M_File, M_Env } from '~modules'
+import { Manifests, Copy_M_Dir, Generate_M_File, M_Env, Format } from '~modules'
 import { gitignore_data_creator } from '~file_data_creators'
 import { Generate } from '~bd'
 import { i_setup_params } from '~types'
@@ -14,4 +14,5 @@ export const setup = ({ bd_name, generates, copy }: i_setup_params) => {
 	generate.set()
 
 	generate_m_file.generate([gitignore_data_creator])
+	new Format().format()
 }

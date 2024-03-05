@@ -1,6 +1,6 @@
 import { i_manifest, i_data_creator, i_value } from '~types'
 import { paths } from '~config'
-import { all_BDs_data } from '../bd/bd'
+import { all_BDs_data } from '~bd'
 
 //
 //
