@@ -14,11 +14,8 @@ export interface _scripts {
 	[key: string]: string
 }
 
-interface _required_file_manifest {
+export type _file_manifest = Partial<{
 	name: string
-}
-
-interface _partial_file_manifest {
 	react: boolean
 	npm: boolean
 	fsd: boolean
@@ -36,22 +33,20 @@ interface _partial_file_manifest {
 	dev_dependencies: string[]
 	scripts: _scripts
 	default_scripts: boolean
-}
-
-export interface _file_manifest
-	extends _required_file_manifest,
-		Partial<_partial_file_manifest> {}
+}>
 
 export interface _domens {
 	dev: string
 	prod: string
 }
 
-export interface _manifest extends _file_manifest {
+export interface _calculate_manifest extends _file_manifest {
 	path: string
 	port: number
 	domens: _domens
 }
+
+export interface _manifest extends _file_manifest, _calculate_manifest {}
 
 export interface _uri {
 	[key: string]: number

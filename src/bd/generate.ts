@@ -18,7 +18,7 @@ class Not_Gitignore implements _value<boolean> {
 	readonly value
 
 	constructor(m: _manifest, path: string) {
-		this.value = true
+		this.value = false
 	}
 }
 

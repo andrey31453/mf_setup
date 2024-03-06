@@ -1,14 +1,12 @@
 {
 	"scripts": {
-		"init": "ts-node ./src/init.ts",
 		"init": "ts-node ./src/init.ts"
 	},
 	"devDependencies": {
-		"react": "^4.2.0",
-		"react-dom": "^4.2.0",
-		"webpack-dev-server": "^4.11.1",
-		"copy-webpack-plugin": "^11.0.0",
-		"html-webpack-plugin": "^5.5.0"
+		"@types/node": "^20.11.21",
+		"ts-node": "^10.9.2",
+		"tsconfig-paths": "^4.2.0",
+		"child_process": "^1.0.2"
 	},
 	"name": "host",
 	"version": "1.0.0",

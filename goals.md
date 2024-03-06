@@ -14,3 +14,9 @@
       ??
     - fsd
       aliases
+
+<!-- hot fix -->
+
+docker compose .//
+docker compose builder
+packaje json not rewrite

@@ -1,6 +1,12 @@
 import { read_file } from '~fs'
 import { paths as p, home_dir, default_manifest } from '~config'
-import { _file_manifest, _manifest, _value, _m_env } from '~types'
+import {
+	_file_manifest,
+	_manifest,
+	_value,
+	_m_env,
+	_calculate_manifest,
+} from '~types'
 import { Search_Files } from '~utils'
 
 //
@@ -41,7 +47,7 @@ class Default_Manifest implements _value<_file_manifest> {
 //
 
 let port_number = 0
-class Calculate_Manifest implements _value<_manifest> {
+class Calculate_Manifest implements _value<_calculate_manifest> {
 	readonly value
 
 	constructor(manifest_path: string, env: _m_env) {
