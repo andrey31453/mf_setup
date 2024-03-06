@@ -1,8 +1,7 @@
 import { paths } from './paths'
 
 export const delimiters = {
-	data: ' || ',
-	file: '.',
+	bd: ' || ',
 }
 
 export const not_gitignore = [

@@ -34,10 +34,10 @@ export class Is_Need implements _value<boolean> {
 
 	@d(webpack)
 	is_exclude_file({ excludes }: _is_need__props, paths: _dir[]): boolean {
-		console.log('---- ---- ---- ----')
-		console.log('excludes: ', excludes)
-		console.log('paths: ', paths)
-		console.log('test: ', this.test(excludes, paths))
+		// console.log('---- ---- ---- ----')
+		// console.log('excludes: ', excludes)
+		// console.log('paths: ', paths)
+		// console.log('test: ', this.test(excludes, paths))
 		return !this.test(excludes, paths)
 	}
 

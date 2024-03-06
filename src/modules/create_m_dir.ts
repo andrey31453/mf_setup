@@ -14,7 +14,7 @@ export class Create_M_Dir implements _create_m_dir {
 	) {}
 
 	private mk_dir = (m: _manifest, dir: string) => {
-		this.generate.add(m, { key: 'dir', value: dir })
+		this.generate.add(m, dir)
 		mk_dir(dir)
 	}
 

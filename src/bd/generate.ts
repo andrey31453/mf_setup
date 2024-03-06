@@ -1,11 +1,4 @@
-import {
-	_generate,
-	_generate_data,
-	_generate_data_key,
-	_bd_name,
-	_value,
-	_manifest,
-} from '~types'
+import { _generate, _generate_data, _bd_name, _value, _manifest } from '~types'
 import { not_gitignore } from '~config'
 import { rm } from '~fs'
 import { BD } from './bd'
@@ -28,25 +21,30 @@ class Not_Gitignore implements _value<boolean> {
 
 export class Generate implements _generate {
 	value = [] as _generate_data[]
-	private recordable_keys: _generate_data_key[] = ['file', 'dir']
 
 	constructor(private name: _bd_name) {}
 
 	add = (m: _manifest, generate_data: _generate_data) => {
 		// TODO add not_gitignore data for prettier
-		if (new Not_Gitignore(m, generate_data.value).value) return
+		if (new Not_Gitignore(m, generate_data).value) return
 
 		this.value.push(generate_data)
 	}
 
-	set = () => this.recordable_keys.forEach(this.set_for_key)
+	set = () => {
+		this.rm_not_writtable()
+		this.set_bd()
+		this.reset()
+	}
 
-	private set_for_key = (key: _generate_data_key) =>
-		this.not_writtable(key).forEach(rm)
+	private rm_not_writtable = () => this.not_writtable().forEach(rm)
 
-	private not_writtable = (key: _generate_data_key): string[] =>
-		this.bd_data(key).filter((b) => !this.value.find((g) => g.value === b))
+	private not_writtable = (): _generate_data[] =>
+		this.bd_data().filter((b) => !this.value.includes(b))
 
-	private bd_data = (key: _generate_data_key) =>
-		new BD(this.name, key, this.value).value
+	private bd_data = (): _generate_data[] => new BD(this.name).get()
+
+	private set_bd = () => new BD(this.name).set(this.value)
+
+	private reset = () => (this.value = [] as _generate_data[])
 }

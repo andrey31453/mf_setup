@@ -31,7 +31,12 @@ lerna-debug.log*
 *.sublime-workspace
 /.vscode
 
-fsdfsdf
+test
+test
+test
+test
+test
+test
 
 # generate
 ./src/.bd

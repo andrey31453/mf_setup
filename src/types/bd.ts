@@ -1,12 +1,6 @@
 import { _manifest } from './data'
 
-export type _generate_data_key = 'file' | 'dir'
-type _generate_data_value = string
-
-export interface _generate_data {
-	key: _generate_data_key
-	value: _generate_data_value
-}
+export type _generate_data = string
 
 export interface _generate {
 	value: _generate_data[]
@@ -15,3 +9,12 @@ export interface _generate {
 }
 
 export type _bd_name = 'init' | 'update'
+
+export interface _bd {
+	set(generate_data: _generate_data[]): void
+	get(): _generate_data[]
+}
+
+export interface _bds {
+	get(): _generate_data[]
+}

@@ -42,11 +42,9 @@ export class Create_M_File implements _create_m_file {
 		if (!new Is_Need(m, dir, file_name).value) return
 		if (!file_data) return
 
+		// TODO rewrite for path in params
 		const path = new Path(m.path, dir, file_name).value
-		this.generate.add(m, {
-			key: 'file',
-			value: path,
-		})
+		this.generate.add(m, path)
 		mk_file(path, new With_Comment(file_data, file_name).value)
 	}
 

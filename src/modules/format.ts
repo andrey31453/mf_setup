@@ -1,12 +1,12 @@
 import { _format } from '~types'
-import { all_BDs_data } from '~bd'
+import { BDs } from '~bd'
 import { execSync } from 'child_process'
 
 export class Format implements _format {
 	constructor() {}
 
 	format = () => {
-		const generate_files = new all_BDs_data().value
+		const generate_files = new BDs().get()
 
 		// TODO delete filtered
 		const filtered_files = generate_files

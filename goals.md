@@ -1,22 +1,26 @@
-14. bins
+14. npm
 
-    - update - npm libs versions
-
-15. aliases for npm packages
-
-16. extract @d in npm
-
-17. extract pipe in npm
-
-18. manifest params
-
-    - npm
-      ??
-    - fsd
-      aliases
+    - bin for update
+      -- add alias for manifest
+    - aliases for name
+    - add @d
+    - add utils
+    - add
 
 <!-- hot fix -->
 
 docker compose .//
 docker compose builder
-packaje json not rewrite
+is_need not work
+package json not rewrite
+not all data for prettier
+
+<!-- work -->
+
+end to work for setup microservice
+
+1. delete keys from [BD] for use [BD] classes
+2. fix not work init.sh
+3. rewrite [BD]
+
+- [*] - abbrs for "class \*"

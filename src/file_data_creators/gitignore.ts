@@ -1,6 +1,6 @@
 import { _manifest, _data_creator, _value } from '~types'
 import { paths } from '~config'
-import { all_BDs_data } from '~bd'
+import { BDs } from '~bd'
 
 //
 //
@@ -52,5 +52,5 @@ lerna-debug.log*
 
 # generate
 ${paths.dir.bd}
-${new Generates(new all_BDs_data({ excludes: ['not_gitignore'] }).value).value}`
+${new Generates(new BDs().get()).value}`
 }
