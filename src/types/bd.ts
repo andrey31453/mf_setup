@@ -1,17 +1,16 @@
-type _path = string
+import { _manifest } from './data'
 
-export type _generate_data = {
-	absolute?: _path
-	module?: _path
-	dir?: _path
-	not_gitignore?: _path
+export type _generate_data_key = 'file' | 'dir'
+type _generate_data_value = string
+
+export interface _generate_data {
+	key: _generate_data_key
+	value: _generate_data_value
 }
-
-export type _generate_data_key = keyof _generate_data
 
 export interface _generate {
 	value: _generate_data[]
-	add: (data: _generate_data) => void
+	add: (m: _manifest, data: _generate_data) => void
 	set: () => void
 }
 

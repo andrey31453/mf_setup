@@ -17,8 +17,8 @@ export interface _copy_m_dir {
 	copy(dir_name: string): _copy_m_dir
 }
 
-export interface _generate_m_dir {
-	generate(file_data_creators: _file_data_creator[]): _generate_m_dir
+export interface _generate_m_file {
+	generate(file_data_creators: _file_data_creator[]): _generate_m_file
 }
 
 export interface _data_creator {

@@ -13,8 +13,8 @@ export class Create_M_Dir implements _create_m_dir {
 		private generate: _generate
 	) {}
 
-	private mk_dir = (dir: string) => {
-		this.generate.add({ dir })
+	private mk_dir = (m: _manifest, dir: string) => {
+		this.generate.add(m, { key: 'dir', value: dir })
 		mk_dir(dir)
 	}
 
@@ -24,7 +24,7 @@ export class Create_M_Dir implements _create_m_dir {
 		if (!new Is_Need(m, dir_name).value) return
 		if (is_dir(dir)) return
 
-		this.mk_dir(dir)
+		this.mk_dir(m, dir)
 	}
 
 	create = (dir_name: string) => {

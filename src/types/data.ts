@@ -14,8 +14,11 @@ export interface _scripts {
 	[key: string]: string
 }
 
-interface ___file_manifest {
+interface _required_file_manifest {
 	name: string
+}
+
+interface _partial_file_manifest {
 	react: boolean
 	npm: boolean
 	fsd: boolean
@@ -26,6 +29,7 @@ interface ___file_manifest {
 	services: 'all' | string[]
 	excludes: string[]
 	includes: string[]
+	not_gitignores: string[]
 	aliases: _aliases
 	src: string
 	dependencies: string[]
@@ -34,7 +38,9 @@ interface ___file_manifest {
 	default_scripts: boolean
 }
 
-export type _file_manifest = Partial<___file_manifest>
+export interface _file_manifest
+	extends _required_file_manifest,
+		Partial<_partial_file_manifest> {}
 
 export interface _domens {
 	dev: string
@@ -56,8 +62,8 @@ export interface _m_env {
 	domens: _domens
 }
 
-type ___parse__<T> = T[]
+type __parse__<T> = T[]
 
-export type _parse = ___parse__<string>
+export type _parse = __parse__<string>
 
-export type _parse_all = ___parse__<string[]>
+export type _parse_all = __parse__<string[]>

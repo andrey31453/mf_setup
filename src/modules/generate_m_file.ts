@@ -1,7 +1,7 @@
 import {
 	_value,
 	_manifest,
-	_generate_m_dir,
+	_generate_m_file,
 	_file_data_creator,
 	_data_creator,
 	_generate,
@@ -12,11 +12,8 @@ import { Create_M } from './create_m'
 //
 //
 
-export class Generate_M_File extends Create_M implements _generate_m_dir {
-	constructor(
-		private manifests: _value<_manifest[]>,
-		generate: _generate
-	) {
+export class Generate_M_File extends Create_M implements _generate_m_file {
+	constructor(private manifests: _value<_manifest[]>, generate: _generate) {
 		super(manifests, generate)
 	}
 
@@ -27,7 +24,7 @@ export class Generate_M_File extends Create_M implements _generate_m_dir {
 			file_name
 		)
 
-	generate(file_data_creators: _file_data_creator[]): _generate_m_dir {
+	generate(file_data_creators: _file_data_creator[]): _generate_m_file {
 		file_data_creators.forEach(
 			({ data_creator, file_name }: _file_data_creator) =>
 				this.generate_file(file_name, data_creator)

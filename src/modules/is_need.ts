@@ -1,4 +1,4 @@
-import { _file_manifest, _value, _dir, _is_need__props } from '~types'
+import { _value, _dir, _is_need__props } from '~types'
 import { Path } from '~utils'
 import { d, webpack } from '~decorators'
 

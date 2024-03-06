@@ -27,15 +27,6 @@ export class Create_M_File implements _create_m_file {
 		private generate: _generate
 	) {}
 
-	private file_path = (
-		manifests: _manifest,
-		file_name: string,
-		dir: _dir
-	): [string, string] => [
-		new Path(manifests.path, dir, file_name).value,
-		new Path(dir, file_name).value,
-	]
-
 	private files_data = (
 		file_name: string,
 		create_data_method: Function
@@ -51,9 +42,12 @@ export class Create_M_File implements _create_m_file {
 		if (!new Is_Need(m, dir, file_name).value) return
 		if (!file_data) return
 
-		const [absolute, module] = this.file_path(m, file_name, dir)
-		this.generate.add({ absolute, module })
-		mk_file(absolute, new With_Comment(file_data, file_name).value)
+		const path = new Path(m.path, dir, file_name).value
+		this.generate.add(m, {
+			key: 'file',
+			value: path,
+		})
+		mk_file(path, new With_Comment(file_data, file_name).value)
 	}
 
 	private create_files_in_m = (

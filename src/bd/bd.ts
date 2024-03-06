@@ -38,7 +38,7 @@ export class BD implements _value<string[]> {
 
 	private get bd_data(): string {
 		return this.generate_data
-			.map((g) => g[this.key])
+			.map((g) => g.value)
 			.filter(Boolean)
 			.join(delimiters.data)
 	}

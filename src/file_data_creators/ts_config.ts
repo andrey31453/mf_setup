@@ -33,7 +33,9 @@ export class TS_Config implements _data_creator {
 		"declaration": true,
 		"isolatedModules": true,
 		"downlevelIteration": true,
-		"outDir": "dist"
+		"outDir": "dist",
+		"target": "ES2016",
+		"lib": ["es2019", "dom"]
 	},
 	"ts-node": {
 		"require": ["tsconfig-paths/register"]
