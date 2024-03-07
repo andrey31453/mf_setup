@@ -12,10 +12,6 @@ export class Is_Need implements _value<boolean> {
 		includes: string[] = null,
 		excludes: string[] = null
 	) {
-		// console.log('---- ---- ---- ----')
-		// console.log('props: ', props.includes)
-		// console.log('props: ', props.excludes)
-		// console.log('paths: ', paths)
 		const need_method = this.need_method(includes, excludes)
 		this.value = need_method.call(this, path, includes, excludes)
 	}
@@ -25,29 +21,17 @@ export class Is_Need implements _value<boolean> {
 		(excludes && this.is_exclude_file) ||
 		(() => true)
 
-	is_include_file(
+	is_include_file = (
 		path: string,
 		includes: string[],
 		excludes: string[]
-	): boolean {
-		// console.log('---- ---- ---- ----')
-		// console.log('includes: ', includes)
-		// console.log('paths: ', paths)
-		// console.log('test: ', this.test(includes, paths))
-		return this.test(path, includes)
-	}
+	): boolean => this.test(path, includes)
 
-	is_exclude_file(
+	is_exclude_file = (
 		path: string,
 		includes: string[],
 		excludes: string[]
-	): boolean {
-		// console.log('---- ---- ---- ----')
-		// console.log('excludes: ', excludes)
-		// console.log('paths: ', paths)
-		// console.log('test: ', this.test(excludes, paths))
-		return !this.test(path, excludes)
-	}
+	): boolean => !this.test(path, excludes)
 
 	test = (path: string, data: string[]) =>
 		data.reduce((test, data_elem) => {

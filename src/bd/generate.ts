@@ -8,29 +8,13 @@ import { BD } from './bd'
 //
 //
 
-class Not_BD implements _value<boolean> {
-	readonly value
-
-	constructor(path: string, m: _manifest) {
-		console.log('path: ', path)
-		this.value = !new Not_Need(path, null, not_bd).value
-		console.log('this.value: ', this.value)
-	}
-}
-
-//
-//
-//
-
 export class Generate implements _generate {
 	value = [] as _generate_data[]
 
 	constructor(private name: _bd_name) {}
 
 	add = (m: _manifest, generate_data: _generate_data) => {
-		// TODO add not_gitignore data for prettier
 		if (new Not_Need(generate_data, null, not_bd).value) return
-
 		this.value.push(generate_data)
 	}
 
