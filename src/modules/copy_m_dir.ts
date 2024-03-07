@@ -92,8 +92,7 @@ export class Copy_M_Dir extends Create_M implements _copy_m_dir {
 		files_data.map((file_data) =>
 			this.create_file(
 				() => read_file(file_data.path),
-				file_data.name,
-				file_data.dirs?.at(-1)
+				new Path(file_data.dirs?.at(-1), file_data.name).value
 			)
 		)
 

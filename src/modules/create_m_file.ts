@@ -27,50 +27,31 @@ export class Create_M_File implements _create_m_file {
 		private generate: _generate
 	) {}
 
-	private files_data = (
-		file_name: string,
-		create_data_method: Function
-	): string[] =>
-		this.manifests.value.map((md) => create_data_method(file_name, md))
+	private files_data = (path: string, create_data_method: Function): string[] =>
+		this.manifests.value.map((md) =>
+			create_data_method(path.match(/[^/]*$/)[0], md)
+		)
 
-	private create_file_in_m = ({
-		dir,
-		file_name,
-		file_data,
-		m,
-	}: _create_file_params) => {
+	private create_file_in_m = (
+		file_data: string,
+		m_path: string,
+		m: _manifest
+	) => {
 		if (!file_data) return
-		if (new Not_Need_M(new Path(dir, file_name).value, m).value) return
+		if (new Not_Need_M(m_path, m).value) return
 
 		// TODO rewrite for path in params
-		const path = new Path(m.path, dir, file_name).value
+		const path = new Path(m.path, m_path).value
 		this.generate.add(m, path)
 		mk_file(path, new With_Comment(file_data, path).value)
 	}
 
-	private create_files_in_m = (
-		files_data: string[],
-		file_name: string,
-		dir: _dir
-	) => {
+	private create_files_in_m = (files_data: string[], path: string) => {
 		files_data.forEach((file_data, i) =>
-			this.create_file_in_m({
-				dir,
-				file_name,
-				file_data,
-				m: this.manifests.value[i],
-			})
+			this.create_file_in_m(file_data, path, this.manifests.value[i])
 		)
 	}
 
-	create = (
-		create_data_method: Function,
-		file_name: string,
-		dir: Nullable<string> = null
-	) =>
-		this.create_files_in_m(
-			this.files_data(file_name, create_data_method),
-			file_name,
-			dir
-		)
+	create = (create_data_method: Function, path: string) =>
+		this.create_files_in_m(this.files_data(path, create_data_method), path)
 }

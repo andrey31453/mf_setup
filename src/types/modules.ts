@@ -1,12 +1,7 @@
-import { Nullable } from './utils'
 import { _manifest } from './data'
 
 export interface _create_m_file {
-	create(
-		create_data_method: Function,
-		file_name: string,
-		dir?: Nullable<string>
-	): void
+	create(create_data_method: Function, path: string): void
 }
 
 export interface _create_m_dir {
@@ -33,11 +28,7 @@ export interface _file_data_creator {
 export interface _create_m {
 	create_dir(dir_name: string): void
 
-	create_file(
-		create_data_method: Function,
-		file_name: string,
-		dir?: Nullable<string>
-	): void
+	create_file(create_data_method: Function, path: string): void
 }
 
 export interface _format {
