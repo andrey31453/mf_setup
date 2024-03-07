@@ -10,3 +10,4 @@
 <!-- hot fix -->
 
 chmod
+host не 3000
