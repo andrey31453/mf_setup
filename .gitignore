@@ -37,10 +37,6 @@ lerna-debug.log*
 ../.eslintrc
 ../setup/.eslintrc
 ../apps/app1/.eslintrc
-../host/.gitignore
-../.gitignore
-../setup/.gitignore
-../apps/app1/.gitignore
 ../host/.prettierignore
 ../.prettierignore
 ../setup/.prettierignore
@@ -65,10 +61,6 @@ lerna-debug.log*
 ../apps/app1/webpack.config.local.js
 ../host/webpack.config.template.js
 ../apps/app1/webpack.config.template.js
-../host/readme.md
-../readme.md
-../setup/readme.md
-../apps/app1/readme.md
 ../host/webpack.config.from_manifest.js
 ../apps/app1/webpack.config.from_manifest.js
 ../host/dev.docker-compose.yml

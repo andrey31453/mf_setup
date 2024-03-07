@@ -1,6 +1,7 @@
 import { _manifest, _data_creator, _value } from '~types'
-import { paths } from '~config'
+import { paths, not_gitignore } from '~config'
 import { BDs } from '~bd'
+import { Is_Need } from '../utils/need'
 
 //
 //
@@ -8,8 +9,13 @@ import { BDs } from '~bd'
 
 class Generates implements _value<string> {
 	readonly value
-	constructor(bds_data: string[]) {
-		this.value = bds_data.join('\n')
+	constructor(m: _manifest, bds_data: string[]) {
+		this.value = bds_data
+			.filter(
+				(path) =>
+					new Is_Need(path, null, [...not_gitignore, ...m.not_gitignore]).value
+			)
+			.join('\n')
 	}
 }
 
@@ -52,5 +58,5 @@ lerna-debug.log*
 
 # generate
 ${paths.dir.bd}
-${new Generates(new BDs().get()).value}`
+${new Generates(m, new BDs().get()).value}`
 }

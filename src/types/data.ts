@@ -27,7 +27,7 @@ export type _file_manifest = Partial<{
 	services: 'all' | string[]
 	excludes: string[]
 	includes: string[]
-	not_gitignores: string[]
+	not_gitignore: string[]
 	aliases: _aliases
 	src: string
 	dependencies: string[]
