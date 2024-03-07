@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "init": "ts-node ./src/init.ts"
+    "init": "ts-node ./src/init.ts",
+    "preset": "ts-node ./src/preset.ts"
   },
   "devDependencies": {
     "@types/node": "^20.11.21",

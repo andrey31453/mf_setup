@@ -6,7 +6,8 @@
   "default_scripts": false,
   "fsd": false,
   "scripts": {
-    "init": "ts-node ./src/init.ts"
+    "init": "ts-node ./src/init.ts",
+    "preset": "ts-node ./src/preset.ts"
   },
   "dev_dependencies": [
     "@types/node",
@@ -16,7 +17,7 @@
     "prettier"
   ],
   "not_gitignore": ["tsconfig.json", "package.json"],
-  "excludes": ["readme.md"],
+  "excludes": ["readme.md", "dev.sh"],
   "aliases": {
     "~types": "types",
     "~config": "config",
@@ -27,13 +28,5 @@
     "~utils": "utils",
     "~bd": "bd",
     "~fs": "fs"
-  },
-  "exposes": {
-    "t1": "a1",
-    "t2": "a2",
-    "t3": "a3"
-  },
-  "remotes": {
-    "r1": "app1"
   }
 }

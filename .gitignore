@@ -36,5 +36,3 @@ lerna-debug.log*
 .eslintrc
 .prettierignore
 .prettierrc.json
-dev.sh
-test.json
