@@ -54,3 +54,19 @@ export class Is_Need implements _value<boolean> {
 			return test || new RegExp(data_elem).test(path)
 		}, false)
 }
+
+//
+//
+//
+
+export class Not_Need implements _value<boolean> {
+	readonly value
+
+	constructor(
+		path: string,
+		includes: string[] = null,
+		excludes: string[] = null
+	) {
+		this.value = new Is_Need(path, includes, excludes).value
+	}
+}
