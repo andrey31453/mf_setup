@@ -13,14 +13,17 @@ import { Create_M } from './create_m'
 //
 
 export class Generate_M_File extends Create_M implements _generate_m_file {
-	constructor(private manifests: _value<_manifest[]>, generate: _generate) {
+	constructor(
+		private manifests: _value<_manifest[]>,
+		generate: _generate
+	) {
 		super(manifests, generate)
 	}
 
 	private generate_file = (file_name: string, data_creator: _data_creator) =>
 		this.create_file(
 			(file_name: string, m: _manifest) =>
-				data_creator.create(file_name, m, this.manifests.value),
+				data_creator.create_data(file_name, m, this.manifests.value),
 			file_name
 		)
 

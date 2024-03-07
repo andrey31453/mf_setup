@@ -22,7 +22,7 @@ export interface _generate_m_file {
 }
 
 export interface _data_creator {
-	create(file_name: string, m: _manifest, manifests?: _manifest[]): string
+	create_data(file_name: string, m: _manifest, manifests?: _manifest[]): string
 }
 
 export interface _file_data_creator {

@@ -14,7 +14,7 @@ import {
 export class Package implements _data_creator {
 	constructor() {}
 
-	create = (
+	create_data = (
 		file_name: string,
 		m: _manifest,
 		manifests: _manifest[]

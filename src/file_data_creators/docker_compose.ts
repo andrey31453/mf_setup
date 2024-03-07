@@ -118,7 +118,7 @@ class Services implements _value<string> {
 export class Docker_Compose implements _data_creator {
 	constructor(private dockerfile: string) {}
 
-	create = (
+	create_data = (
 		file_name: string,
 		m: _manifest,
 		manifests: _manifest[]

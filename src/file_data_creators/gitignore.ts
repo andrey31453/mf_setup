@@ -26,7 +26,7 @@ class Generates implements _value<string> {
 export class Gitignore implements _data_creator {
 	constructor() {}
 
-	create = (file_name: string, m: _manifest): string => `package-lock.json
+	create_data = (file_name: string, m: _manifest): string => `package-lock.json
 node_modules
 
 # db

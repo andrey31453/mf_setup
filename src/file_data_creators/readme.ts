@@ -7,7 +7,7 @@ import { _manifest, _data_creator } from '~types'
 export class Readme implements _data_creator {
 	constructor() {}
 
-	create = (
+	create_data = (
 		fn: string,
 		manifest: _manifest
 	): string => `## microfrontend ${manifest.name}
