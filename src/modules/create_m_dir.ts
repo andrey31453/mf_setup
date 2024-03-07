@@ -1,6 +1,6 @@
 import { _value, _manifest, _create_m_dir, _generate } from '~types'
 import { mk_dir, is_dir } from '~fs'
-import { Is_Need_M } from '~modules'
+import { Not_Need_M } from '~modules'
 import { Path } from '~utils'
 
 //
@@ -21,7 +21,7 @@ export class Create_M_Dir implements _create_m_dir {
 	private working_dir = (m: _manifest, dir_name: string) => {
 		const dir = new Path(m.path, dir_name).value
 
-		if (!new Is_Need_M(dir_name, m).value) return
+		if (new Not_Need_M(dir_name, m).value) return
 		if (is_dir(dir)) return
 
 		this.mk_dir(m, dir)

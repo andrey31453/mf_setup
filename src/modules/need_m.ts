@@ -36,6 +36,6 @@ export class Not_Need_M implements _value<boolean> {
 	readonly value
 
 	constructor(path: string, props: _is_need__props) {
-		this.value = new Is_Need_M(path, props).value
+		this.value = !new Is_Need_M(path, props).value
 	}
 }

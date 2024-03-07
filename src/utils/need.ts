@@ -51,6 +51,6 @@ export class Not_Need implements _value<boolean> {
 		includes: string[] = null,
 		excludes: string[] = null
 	) {
-		this.value = new Is_Need(path, includes, excludes).value
+		this.value = !new Is_Need(path, includes, excludes).value
 	}
 }

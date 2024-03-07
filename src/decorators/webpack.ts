@@ -1,14 +1,13 @@
 import { _manifest } from '~types'
-import { webpack_file_name } from '~config'
+import { webpack_files } from '~config'
+import { Is_Need } from '~utils'
 
 //
 //
 //
 
-const is_webpack = (path: string) => new RegExp(webpack_file_name).test(path)
-
-export const webpack = (value: any, m: _manifest, path: string) => {
+export const webpack = (value: any, path: string, m: _manifest) => {
 	if (m.webpack) return value
 
-	return !is_webpack(path)
+	return new Is_Need(path, null, webpack_files).value
 }

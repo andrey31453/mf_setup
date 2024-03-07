@@ -1,3 +1,9 @@
+const file_names = {
+	docker: 'dockerfile',
+	docker_compose: 'docker-compose',
+	webpack: 'webpack.config',
+}
+
 export const paths = {
 	file: {
 		manifest: 'manifest.json',
@@ -6,14 +12,14 @@ export const paths = {
 		gitignore: '.gitignore',
 
 		dockerfile: {
-			dev: 'dev.dockerfile',
+			dev: `dev.${file_names.docker}`,
 		},
 
-		webpack_config: 'webpack.config.from_manifest.js',
+		webpack_config: `${file_names.webpack}.from_manifest.js`,
 		ts_config: 'tsconfig.json',
 		package: 'package.json',
 		docker_compose: {
-			dev: 'dev.docker-compose.yml',
+			dev: `dev.${file_names.docker_compose}.yml`,
 		},
 	},
 
@@ -24,4 +30,8 @@ export const paths = {
 	},
 }
 
-export const webpack_file_name = 'webpack.config'
+export const webpack_files = [
+	file_names.webpack,
+	file_names.docker_compose,
+	file_names.docker,
+]

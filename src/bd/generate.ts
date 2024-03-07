@@ -13,9 +13,11 @@ export class Generate implements _generate {
 
 	constructor(private name: _bd_name) {}
 
-	add = (m: _manifest, generate_data: _generate_data) => {
-		if (new Not_Need(generate_data, null, not_bd).value) return
-		this.value.push(generate_data)
+	add = (m: _manifest, path: _generate_data) => {
+		console.log('path: ', path)
+		if (new Not_Need(path, null, not_bd).value) return
+		console.log('Need')
+		this.value.push(path)
 	}
 
 	set = () => {
@@ -26,8 +28,9 @@ export class Generate implements _generate {
 
 	private rm_not_writtable = () => this.not_writtable().forEach(rm)
 
-	private not_writtable = (): _generate_data[] =>
-		this.bd_data().filter((b) => !this.value.includes(b))
+	private not_writtable = (): _generate_data[] => {
+		return this.bd_data().filter((b) => !this.value.includes(b))
+	}
 
 	private bd_data = (): _generate_data[] => new BD(this.name).get()
 

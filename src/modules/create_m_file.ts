@@ -8,7 +8,7 @@ import {
 } from '~types'
 import { mk_file } from '~fs'
 import { With_Comment, Path } from '~utils'
-import { Is_Need_M } from '~modules'
+import { Not_Need_M, Is_Need_M } from '~modules'
 
 //
 //
@@ -40,7 +40,7 @@ export class Create_M_File implements _create_m_file {
 		m,
 	}: _create_file_params) => {
 		if (!file_data) return
-		if (!new Is_Need_M(new Path(dir, file_name).value, m).value) return
+		if (new Not_Need_M(new Path(dir, file_name).value, m).value) return
 
 		// TODO rewrite for path in params
 		const path = new Path(m.path, dir, file_name).value

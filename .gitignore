@@ -33,3 +33,17 @@ lerna-debug.log*
 
 # generate
 ./src/.bd
+../host/readme.md
+../readme.md
+../setup/readme.md
+../apps/app1/readme.md
+../host/webpack.config.from_manifest.js
+../apps/app1/webpack.config.from_manifest.js
+../host/tsconfig.json
+../tsconfig.json
+../setup/tsconfig.json
+../apps/app1/tsconfig.json
+../host/package.json
+../package.json
+../setup/package.json
+../apps/app1/package.json
