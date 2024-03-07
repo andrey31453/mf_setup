@@ -19,6 +19,7 @@ export type _file_manifest = Partial<{
 	rate: number
 	react: boolean
 	npm: boolean
+	compose: boolean
 	fsd: boolean
 	webpack: boolean
 	exposes: _file_manifest_data

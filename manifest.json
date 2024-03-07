@@ -3,6 +3,7 @@
 
 	"react": false,
 	"webpack": false,
+	"compose": false,
 	"default_scripts": false,
 	"fsd": false,
 	"scripts": {

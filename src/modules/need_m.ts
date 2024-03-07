@@ -1,5 +1,5 @@
 import { _value } from '~types'
-import { d, webpack } from '~decorators'
+import { d, webpack, compose } from '~decorators'
 import { Is_Need } from '~utils'
 
 //
@@ -22,6 +22,7 @@ export class Is_Need_M implements _value<boolean> {
 		this.value = this.filter(path, props)
 	}
 
+	@d(compose)
 	@d(webpack)
 	private filter(path: string, props: _is_need__props): boolean {
 		return new Is_Need(path, props.includes, props.excludes).value

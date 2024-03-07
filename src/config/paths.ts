@@ -1,6 +1,6 @@
 const file_names = {
 	docker: 'dockerfile',
-	docker_compose: 'docker-compose',
+	compose: 'docker-compose',
 	webpack: 'webpack.config',
 }
 
@@ -19,7 +19,7 @@ export const paths = {
 		ts_config: 'tsconfig.json',
 		package: 'package.json',
 		docker_compose: {
-			dev: `dev.${file_names.docker_compose}.yml`,
+			dev: `dev.${file_names.compose}.yml`,
 		},
 	},
 
@@ -30,8 +30,6 @@ export const paths = {
 	},
 }
 
-export const webpack_files = [
-	file_names.webpack,
-	file_names.docker_compose,
-	file_names.docker,
-]
+export const webpack_files = [file_names.webpack, file_names.docker]
+
+export const compose_files = [file_names.compose]
