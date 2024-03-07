@@ -7,5 +7,6 @@ export const default_manifest: _file_manifest = {
 	fsd: true,
 	webpack: true,
 	default_scripts: true,
+	not_gitignore: [],
 	npm: false,
 }

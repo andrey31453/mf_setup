@@ -65,11 +65,3 @@ lerna-debug.log*
 ../apps/app1/webpack.config.from_manifest.js
 ../host/dev.docker-compose.yml
 ../apps/app1/dev.docker-compose.yml
-../host/tsconfig.json
-../tsconfig.json
-../setup/tsconfig.json
-../apps/app1/tsconfig.json
-../host/package.json
-../package.json
-../setup/package.json
-../apps/app1/package.json

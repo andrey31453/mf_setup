@@ -15,6 +15,7 @@
 		"child_process",
 		"prettier"
 	],
+	"not_gitignore": ["tsconfig.json", "package.json"],
 	"excludes": ["readme.md"],
 	"aliases": {
 		"~types": "types",
