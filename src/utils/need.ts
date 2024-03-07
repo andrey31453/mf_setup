@@ -13,27 +13,27 @@ export class Is_Need implements _value<boolean> {
 		excludes: string[] = null
 	) {
 		const need_method = this.need_method(includes, excludes)
-		this.value = need_method.call(this, path, includes, excludes)
+		this.value = need_method(path, includes, excludes)
 	}
 
-	need_method = (includes: string[], excludes: string[]): Function =>
+	private need_method = (includes: string[], excludes: string[]): Function =>
 		(includes && this.is_include_file) ||
 		(excludes && this.is_exclude_file) ||
 		(() => true)
 
-	is_include_file = (
+	private is_include_file = (
 		path: string,
 		includes: string[],
 		excludes: string[]
 	): boolean => this.test(path, includes)
 
-	is_exclude_file = (
+	private is_exclude_file = (
 		path: string,
 		includes: string[],
 		excludes: string[]
 	): boolean => !this.test(path, excludes)
 
-	test = (path: string, data: string[]) =>
+	private test = (path: string, data: string[]) =>
 		data.reduce((test, data_elem) => {
 			return test || new RegExp(data_elem).test(path)
 		}, false)

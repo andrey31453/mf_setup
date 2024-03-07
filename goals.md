@@ -9,7 +9,6 @@
 
 <!-- hot fix -->
 
-is_need not work
-package json not rewrite
-not all data for prettier
+not data for prettier
+@d webpack not work
 Create_M_File rewrite dir-file
