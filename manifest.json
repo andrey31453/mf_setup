@@ -1,5 +1,6 @@
 {
 	"name": "setup",
+
 	"react": false,
 	"webpack": false,
 	"default_scripts": false,

@@ -16,6 +16,7 @@ export interface _scripts {
 
 export type _file_manifest = Partial<{
 	name: string
+	rate: number
 	react: boolean
 	npm: boolean
 	fsd: boolean
@@ -40,7 +41,7 @@ export interface _domens {
 	prod: string
 }
 
-export interface _calculate_manifest extends _file_manifest {
+export interface _calculate_manifest {
 	path: string
 	port: number
 	domens: _domens

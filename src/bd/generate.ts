@@ -1,17 +1,20 @@
 import { _generate, _generate_data, _bd_name, _value, _manifest } from '~types'
-import { not_gitignore } from '~config'
+import { not_bd } from '~config'
 import { rm } from '~fs'
+import { Is_Need } from '~utils'
 import { BD } from './bd'
 
 //
 //
 //
 
-class Not_Gitignore implements _value<boolean> {
+class Not_BD implements _value<boolean> {
 	readonly value
 
-	constructor(m: _manifest, path: string) {
-		this.value = false
+	constructor(path: string, m: _manifest) {
+		console.log('path: ', path)
+		this.value = !new Is_Need(path, { excludes: not_bd }).value
+		console.log('this.value: ', this.value)
 	}
 }
 
@@ -26,7 +29,7 @@ export class Generate implements _generate {
 
 	add = (m: _manifest, generate_data: _generate_data) => {
 		// TODO add not_gitignore data for prettier
-		if (new Not_Gitignore(m, generate_data).value) return
+		if (new Not_BD(generate_data, m).value) return
 
 		this.value.push(generate_data)
 	}

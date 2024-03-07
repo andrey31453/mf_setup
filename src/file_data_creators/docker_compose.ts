@@ -83,7 +83,7 @@ class Services implements _value<string> {
 		name: `s_${manifest.name}`,
 		port: `${manifest.port}`,
 		workdir: `/mf/${manifest.name}`,
-		context: `./${manifest.path.replace(new RegExp(m.path), '')}`,
+		context: `./${manifest.path.replace(new RegExp(m.path), '').replace(/^\//, '')}`,
 		dockerfile,
 	})
 

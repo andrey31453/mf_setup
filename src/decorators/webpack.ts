@@ -1,19 +1,14 @@
-import { _dir, _manifest } from '~types'
+import { _manifest } from '~types'
 import { webpack_file_name } from '~config'
 
 //
 //
 //
 
-const is_webpack = (dir: _dir[]) =>
-	dir.reduce((is_webpack, path) => {
-		if (new RegExp(path).test(webpack_file_name)) is_webpack = false
+const is_webpack = (path: string) => new RegExp(webpack_file_name).test(path)
 
-		return is_webpack
-	}, true)
-
-export const webpack = (value: any, m: _manifest, dir: _dir[]) => {
+export const webpack = (value: any, m: _manifest, path: string) => {
 	if (m.webpack) return value
 
-	return !is_webpack(dir)
+	return !is_webpack(path)
 }

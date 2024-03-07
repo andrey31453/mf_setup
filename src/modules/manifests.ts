@@ -8,6 +8,7 @@ import {
 	_calculate_manifest,
 } from '~types'
 import { Search_Files } from '~utils'
+import { d, sort } from '~decorators'
 
 //
 //
@@ -82,12 +83,13 @@ export class Manifests implements _value<_manifest[]> {
 		)
 	}
 
-	private create_data = (
+	@d(sort('rate', 'desc'))
+	private create_data(
 		manifest_paths: string[],
 		manifests: _file_manifest[],
 		env: _m_env
-	): _manifest[] =>
-		manifest_paths.reduce(
+	): _manifest[] {
+		return manifest_paths.reduce(
 			(data, manifest_path, i) => [
 				...data,
 				{
@@ -98,4 +100,5 @@ export class Manifests implements _value<_manifest[]> {
 			],
 			[] as _manifest[]
 		)
+	}
 }
