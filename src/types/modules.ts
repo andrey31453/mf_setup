@@ -43,8 +43,3 @@ export interface _create_m {
 export interface _format {
 	format(): void
 }
-
-export interface _is_need__props {
-	excludes?: string[]
-	includes?: string[]
-}

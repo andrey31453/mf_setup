@@ -1,11 +1,4 @@
-import {
-	_generate_data,
-	_bd_name,
-	_is_need__props,
-	_value,
-	_bd,
-	_bds,
-} from '~types'
+import { _generate_data, _bd_name, _bd, _bds } from '~types'
 import { paths, delimiters } from '~config'
 import { mk_file, read_file, read_dir } from '~fs'
 import { Path } from '~utils'
