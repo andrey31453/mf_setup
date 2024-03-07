@@ -15,6 +15,8 @@ class Generates implements _value<string> {
 				(path) =>
 					new Is_Need(path, null, [...not_gitignore, ...m.not_gitignore]).value
 			)
+			.filter((path) => new RegExp(m.path).test(path))
+			.map((path) => path.replace(new RegExp(m.path + '/'), ''))
 			.join('\n')
 	}
 }
