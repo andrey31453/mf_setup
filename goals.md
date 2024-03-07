@@ -9,6 +9,8 @@
 
 <!-- hot fix -->
 
+gitignore not tsconfig
 not data for prettier
 @d webpack not work
 Create_M_File rewrite dir-file
+create_file => one path

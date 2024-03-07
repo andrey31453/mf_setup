@@ -14,9 +14,7 @@ export class Generate implements _generate {
 	constructor(private name: _bd_name) {}
 
 	add = (m: _manifest, path: _generate_data) => {
-		console.log('path: ', path)
 		if (new Not_Need(path, null, not_bd).value) return
-		console.log('Need')
 		this.value.push(path)
 	}
 

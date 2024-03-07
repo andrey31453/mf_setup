@@ -1,29 +1,29 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "paths": {
-      "~types": ["./src/types"],
-      "~config": ["./src/config"],
-      "~decorators": ["./src/decorators"],
-      "~file_data_creators": ["./src/file_data_creators"],
-      "~bd": ["./src/bd"],
-      "~modules": ["./src/modules"],
-      "~utils": ["./src/utils"],
-      "~fs": ["./src/fs"]
-    },
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "declaration": true,
-    "isolatedModules": true,
-    "downlevelIteration": true,
-    "outDir": "dist",
-    "target": "ES2016",
-    "lib": ["es2019", "dom"]
-  },
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"paths": {
+			"~types": ["./src/types"],
+			"~config": ["./src/config"],
+			"~decorators": ["./src/decorators"],
+			"~file_data_creators": ["./src/file_data_creators"],
+			"~bd": ["./src/bd"],
+			"~modules": ["./src/modules"],
+			"~utils": ["./src/utils"],
+			"~fs": ["./src/fs"]
+		},
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"declaration": true,
+		"isolatedModules": true,
+		"downlevelIteration": true,
+		"outDir": "dist",
+		"target": "ES2016",
+		"lib": ["es2019", "dom"]
+	},
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	}
 }

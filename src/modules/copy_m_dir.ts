@@ -98,9 +98,7 @@ export class Copy_M_Dir extends Create_M implements _copy_m_dir {
 		)
 
 	copy(copy_dir: string): _copy_m_dir {
-		console.log('copy_dir: ', copy_dir)
 		const files_data = new Files_Data(copy_dir).value
-		console.log('files_data: ', files_data)
 
 		this.create_dirs(files_data)
 		this.create_files(files_data)
