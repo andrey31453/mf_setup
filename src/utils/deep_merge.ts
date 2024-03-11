@@ -23,7 +23,7 @@ const get_keys = <T extends _mergeable>(...args: T[]): string[] => {
 const get_init_result = <T extends _mergeable>(...args: T[]) =>
   type_is(args[0], 'object') ? {} : []
 
-const merge_values = <T extends any>(...values: T[]) => {
+export const merge_values = <T extends any>(...values: T[]) => {
   const last_believable_value = get_last_believable_value(...values)
 
   // is not merged type

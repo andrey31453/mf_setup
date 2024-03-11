@@ -3,6 +3,7 @@
     "init": "ts-node ./src/init.ts",
     "preset": "ts-node ./src/preset.ts"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.21",
     "ts-node": "^10.9.2",

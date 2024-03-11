@@ -1,5 +1,5 @@
 import { _manifest, _data_creator } from '~types'
-import { Field_Value } from '~utils'
+import { Field_Value, concat_spread } from '~utils'
 import {
   packages,
   webpack_packages,
@@ -34,20 +34,14 @@ export class Package implements _data_creator {
 	${
     new Field_Value({
       field: 'dependencies',
-      value: m.dependencies,
+      value: concat_spread(m.dependencies, m.react && react_packages),
       iterator: (pg: keyof typeof packages) => `"${pg}": "${packages[pg]}"`,
     }).value
   }
 	${
     new Field_Value({
       field: 'devDependencies',
-      values: [
-        m.dev_dependencies,
-        // @ts-ignore
-        m.webpack && webpack_packages,
-        // @ts-ignore
-        m.react && react_packages,
-      ],
+      value: concat_spread(m.dev_dependencies, m.webpack && webpack_packages),
       iterator: (pg: keyof typeof packages) => `"${pg}": "${packages[pg]}"`,
     }).value
   }
