@@ -10,9 +10,9 @@ import { Path } from '~utils'
 class Sub_Services implements _value<_manifest[]> {
   readonly value
 
-  constructor(current_manifests: _manifest, manifests: _manifest[]) {
+  constructor(current_manifest: _manifest, manifests: _manifest[]) {
     this.value = manifests.filter((m) =>
-      new RegExp(current_manifests.path).test(m.path)
+      new RegExp(current_manifest.path).test(m.path)
     )
   }
 }

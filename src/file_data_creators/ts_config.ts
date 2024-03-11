@@ -20,13 +20,14 @@ export class TS_Config implements _data_creator {
 		${
       new Field_Value({
         field: 'paths',
+        // @ts-ignore
         values: [m.aliases, m.fsd && fsd_aliases],
         iterator: (aliase_value: string, aliase_key: string) =>
           `"${aliase_key}": ["${new SRC(m).value}/${aliase_value}"]`,
       }).value
     }
 		"moduleResolution": "node",
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,
@@ -34,6 +35,10 @@ export class TS_Config implements _data_creator {
 		"isolatedModules": true,
 		"downlevelIteration": true,
 		"outDir": "dist",
+    "jsx": "react",
+    "baseUrl": ".",
+    "composite": true,
+    "strict": true,
 		"lib": ["es2019", "es2016", "dom"]
 	},
 	"ts-node": {

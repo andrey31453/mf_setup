@@ -19,6 +19,7 @@ class Default_Manifest implements _value<_file_manifest> {
 
   constructor(manifest: _file_manifest) {
     this.value = Object.keys(default_manifest).reduce(
+      // @ts-ignore
       (acc, key: keyof _file_manifest) => ({
         ...acc,
         [key]: manifest[key] ?? default_manifest[key],
@@ -81,7 +82,10 @@ class Calculate_Manifest implements _value<_calculate_manifest> {
 
   constructor(manifest: _file_manifest, env: _m_env, current_position: number) {
     this.value = {
-      path: manifest.module_path.replace(new RegExp(`/${p.file.manifest}`), ''),
+      path: manifest.module_path?.replace(
+        new RegExp(`/${p.file.manifest}`),
+        ''
+      ),
       port: +env.host_port + current_position,
       domens: env.domens,
     }

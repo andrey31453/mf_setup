@@ -8,17 +8,19 @@ import { Is_Need } from '../utils/need'
 //
 
 class Generates implements _value<string> {
-	readonly value
-	constructor(m: _manifest, bds_data: string[]) {
-		this.value = bds_data
-			.filter(
-				(path) =>
-					new Is_Need(path, null, [...not_gitignore, ...m.not_gitignore]).value
-			)
-			.filter((path) => new RegExp(m.path).test(path))
-			.map((path) => path.replace(new RegExp(m.path + '/'), ''))
-			.join('\n')
-	}
+  readonly value
+  constructor(m: _manifest, bds_data: string[]) {
+    this.value = bds_data
+      .filter(
+        (path) =>
+          // TODO @ts-ignore
+          // @ts-ignore
+          new Is_Need(path, null, [...not_gitignore, ...m.not_gitignore]).value
+      )
+      .filter((path) => new RegExp(m.path).test(path))
+      .map((path) => path.replace(new RegExp(m.path + '/'), ''))
+      .join('\n')
+  }
 }
 
 //
@@ -26,9 +28,9 @@ class Generates implements _value<string> {
 //
 
 export class Gitignore implements _data_creator {
-	constructor() {}
+  constructor() {}
 
-	create_data = (file_name: string, m: _manifest): string => `package-lock.json
+  create_data = (file_name: string, m: _manifest): string => `package-lock.json
 node_modules
 
 # db

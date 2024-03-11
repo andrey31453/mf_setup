@@ -12,7 +12,7 @@
       "~fs": ["./src/fs"]
     },
     "moduleResolution": "node",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
@@ -20,6 +20,10 @@
     "isolatedModules": true,
     "downlevelIteration": true,
     "outDir": "dist",
+    "jsx": "react",
+    "baseUrl": ".",
+    "composite": true,
+    "strict": true,
     "lib": ["es2019", "es2016", "dom"]
   },
   "ts-node": {
