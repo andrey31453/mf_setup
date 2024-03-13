@@ -6,9 +6,9 @@
       "~config": ["./src/config"],
       "~decorators": ["./src/decorators"],
       "~file_data_creators": ["./src/file_data_creators"],
-      "~bd": ["./src/bd"],
       "~modules": ["./src/modules"],
       "~utils": ["./src/utils"],
+      "~bd": ["./src/bd"],
       "~fs": ["./src/fs"]
     },
     "moduleResolution": "node",
@@ -24,7 +24,10 @@
     "baseUrl": ".",
     "composite": true,
     "strict": true,
-    "lib": ["es2019", "es2016", "dom"]
+    "target": "es2015",
+    "lib": ["es2022", "es2020", "es2019", "es2016", "dom"],
+
+    "esModuleInterop": true
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
