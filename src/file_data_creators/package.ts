@@ -45,6 +45,9 @@ export class Package implements _data_creator {
       iterator: (pg: keyof typeof packages) => `"${pg}": "${packages[pg]}"`,
     }).value
   }
+  "browserslist": [
+    "defaults and fully supports es6"
+  ],
 	"name": "${m.name}",
 	"version": "1.0.0",
 	"license": "MIT"
