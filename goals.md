@@ -1,13 +1,22 @@
-14. npm
+1. npm
 
-    - bin for update
-      -- add alias for manifest
-    - aliases for name
-    - add @d
-    - add utils
-    - add
+   - bin for update
+     -- add alias for manifest
+     -- private
+     --
+   - aliases for name
+   - add @d
+   - add utils
+   - add
 
-<!-- hot fix -->
+2. chmod
 
-chmod
-host не 3000
+3. docker
+
+   - :ro
+   - change package dont change image
+   - change webpack dont change image
+
+4. check work setup in single module
+
+5. add docker paths for vs code
