@@ -39,7 +39,10 @@ export class TS_Config implements _data_creator {
     "baseUrl": ".",
     "composite": true,
     "strict": true,
-		"lib": ["es2019", "es2016", "dom"]
+    "target": "es2015",
+		"lib": ["es2022","es2020", "es2019", "es2016", "dom"],
+
+		"esModuleInterop": true,
 	},
 	"ts-node": {
 		"require": ["tsconfig-paths/register"]
