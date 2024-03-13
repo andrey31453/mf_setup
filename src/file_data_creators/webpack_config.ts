@@ -1,14 +1,14 @@
 import { _manifest, _data_creator } from '~types'
 import { remote_entry, react_packages, fsd_aliases } from '~config'
-import { Current_Manifest, SRC, Field_Value } from '~utils'
+import { Current_Manifest, SRC, Field_Value, Path } from '~utils'
 
 //
 //
 //
 
 const iterators = {
-  expose: (expose_value: string, expose_key: string) =>
-    `'./${expose_key}': src + '/${expose_value}'`,
+  expose: (m: _manifest) => (expose_value: string, expose_key: string) =>
+    `'./${expose_key}': '${new Path(new SRC(m).value, expose_value).value}'`,
 
   remote:
     (manifests: _manifest[]) => (remote_value: string, remote_key: string) => {
@@ -17,13 +17,14 @@ const iterators = {
         remote_value
       ).value
 
-      const domen = `\`\${dev ? '${domens.dev}' : '${domens.prod}'}`
+      const domen = `\${dev ? '${domens.dev}' : '${domens.prod}'\}`
 
-      return `'./${remote_key}': ${domen}:${port}/${remote_entry}\``
+      return `'${remote_key}': \`${remote_key}@${domen}:${port}/${remote_entry}\``
     },
 
   // TODO write shared props
-  shared: (shared_value: string) => `'${shared_value}': { singleton: true }`,
+  shared: (shared_value: string) =>
+    `'${shared_value}': {singleton: true, eager: true}`,
 }
 
 //
@@ -37,9 +38,21 @@ export class Webpack_Config implements _data_creator {
     file_name: string,
     m: _manifest,
     manifests: _manifest[]
-  ): string => `const src = path.join(__dirname, '${new SRC(m).value}')
+  ): string => `const src =  __dirname + '/src/'
+const dist = __dirname + '/dist/'
+const { ModuleFederationPlugin: module_federation } =
+  require('webpack').container
 
 module.exports = ({ dev }) => ({
+	devServer: dev
+		? {
+			hot: true,
+			port: ${m.port},
+			static: dist,
+			allowedHosts: 'all',
+		}
+		: undefined,
+
 	plugins: [
 		new module_federation({
       name: '${m.name}',
@@ -48,7 +61,7 @@ module.exports = ({ dev }) => ({
         new Field_Value({
           field: 'exposes',
           value: m.exposes,
-          iterator: iterators.expose,
+          iterator: iterators.expose(m),
           quotes: 'none',
         }).value
       }
@@ -71,18 +84,5 @@ module.exports = ({ dev }) => ({
       }
     }),
 	],
-
-	resolve: {
-		${
-      new Field_Value({
-        field: 'alias',
-        // @ts-ignore
-        values: [m.aliases, m.fsd && fsd_aliases],
-        iterator: (aliase_value: string, aliase_key: string) =>
-          `'${aliase_key}': src + '${aliase_value}'`,
-        quotes: 'none',
-      }).value
-    }
-	},
 })`
 }
