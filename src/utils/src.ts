@@ -6,9 +6,9 @@ import { _manifest, _value } from '~types'
 //
 
 export class SRC implements _value<string> {
-	readonly value
+  readonly value
 
-	constructor(m: _manifest) {
-		this.value = m.src || paths.dir.src
-	}
+  constructor(m: _manifest) {
+    this.value = m.src || paths.dir.src
+  }
 }
