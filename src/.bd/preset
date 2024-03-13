@@ -1,1 +1,0 @@
-../host/tsconfig.json || ../setup/tsconfig.json || ../apps/app1/tsconfig.json || ../host/package.json || ../setup/package.json || ../apps/app1/package.json
