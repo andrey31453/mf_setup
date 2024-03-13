@@ -1,4 +1,5 @@
 cd ./setup
+
 # TODO change npm to npu or another npm update
 rm -rf ./node_modules
 npm i

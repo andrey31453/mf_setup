@@ -23,7 +23,6 @@
     "~config": "config",
     "~decorators": "decorators",
     "~file_data_creators": "file_data_creators",
-    "~bd": "bd",
     "~modules": "modules",
     "~utils": "utils",
     "~bd": "bd",
