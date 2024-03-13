@@ -4,8 +4,8 @@
 package-lock.json
 node_modules
 
-# db
-/.db
+# bd
+/src/.bd/*
 
 # mac
 /**/*.DS_Store
