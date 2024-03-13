@@ -2,8 +2,8 @@ FROM node:20.10-alpine
 ARG workdir
 
 WORKDIR $workdir
-COPY package*.json .
+ADD package*.json .
 RUN npm i
-COPY . .
+ADD . .
 
 CMD npm run dev
