@@ -1,11 +1,13 @@
 import { _manifest, _data_creator } from '~types'
-import { Field_Value, concat_spread } from '~utils'
-import {
-  packages,
-  webpack_packages,
-  react_packages,
-  default_scripts,
-} from '~config'
+import { Field_Value } from '~utils'
+import { packages, default_scripts } from '~config'
+
+//
+//
+//
+
+const name_value_iterator = (value: string, name: string) =>
+  `"${name}": "${value}"`
 
 //
 //
@@ -27,22 +29,33 @@ export class Package implements _data_creator {
         // @ts-ignore
         m.webpack && m.default_scripts && default_scripts,
       ],
-      iterator: (script: string, script_name: string) =>
-        `"${script_name}": "${script}"`,
+      iterator: name_value_iterator,
     }).value
   }
 	${
     new Field_Value({
       field: 'dependencies',
-      value: concat_spread(m.dependencies, m.react && react_packages),
-      iterator: (pg: keyof typeof packages) => `"${pg}": "${packages[pg]}"`,
+      values: [
+        // @ts-ignore
+        m.react && packages.react,
+        // @ts-ignore
+        m.node && packages.node,
+      ],
+      iterator: name_value_iterator,
     }).value
   }
 	${
     new Field_Value({
       field: 'devDependencies',
-      value: concat_spread(m.dev_dependencies, m.webpack && webpack_packages),
-      iterator: (pg: keyof typeof packages) => `"${pg}": "${packages[pg]}"`,
+      values: [
+        // @ts-ignore
+        m.webpack && packages.webpack,
+        // @ts-ignore
+        m.semantic && packages.semantic,
+        // @ts-ignore
+        m.arora && packages.arora,
+      ],
+      iterator: name_value_iterator,
     }).value
   }
   "browserslist": [

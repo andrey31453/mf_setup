@@ -1,5 +1,5 @@
 import { _manifest, _data_creator } from '~types'
-import { remote_entry, react_packages, fsd_aliases } from '~config'
+import { remote_entry, packages } from '~config'
 import { Current_Manifest, SRC, Field_Value, Path } from '~utils'
 
 //
@@ -23,8 +23,7 @@ const iterators = {
     },
 
   // TODO write shared props
-  shared: (shared_value: string) =>
-    `'${shared_value}': {singleton: true, eager: true}`,
+  shared: (verison, package_name) => `'${package_name}': {singleton: true}`,
 }
 
 //
@@ -77,7 +76,7 @@ module.exports = ({ dev }) => ({
         new Field_Value({
           field: 'shared',
           // @ts-ignore
-          values: [m.shared, m.react && react_packages],
+          values: [m.react && packages.react],
           iterator: iterators.shared,
           quotes: 'none',
         }).value

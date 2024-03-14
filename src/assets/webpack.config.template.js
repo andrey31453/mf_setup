@@ -14,6 +14,10 @@ module.exports = ({ dev }) => ({
   devtool: dev ? 'eval-source-map' : undefined,
   target: ['browserslist'],
 
+  optimization: {
+    splitChunks: false,
+  },
+
   output: {
     clean: true,
     path: dist,

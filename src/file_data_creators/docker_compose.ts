@@ -82,7 +82,7 @@ class Services implements _value<string> {
   ): _service_params => ({
     name: `s_${manifest.name}`,
     port: `${manifest.port}`,
-    workdir: `/mf/${manifest.name}`,
+    workdir: `/files/${manifest.name}`,
     context: `./${manifest.path.replace(new RegExp(m.path), '').replace(/^\//, '')}`,
     dockerfile,
   })

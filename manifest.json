@@ -1,5 +1,7 @@
 {
   "name": "setup",
+  "node": true,
+  "arora": false,
   "react": false,
   "webpack": false,
   "compose": false,
@@ -9,13 +11,7 @@
     "init": "ts-node ./src/init.ts",
     "preset": "ts-node ./src/preset.ts"
   },
-  "dev_dependencies": [
-    "@types/node",
-    "ts-node",
-    "tsconfig-paths",
-    "child_process",
-    "prettier"
-  ],
+
   "not_gitignore": ["tsconfig.json", "package.json"],
   "excludes": ["readme.md", "dev.sh"],
   "aliases": {

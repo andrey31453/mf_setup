@@ -19,8 +19,11 @@ export type _file_manifest = Partial<{
   rate: number
   react: boolean
   npm: boolean
+  arora: boolean
+  node: boolean
   compose: boolean
   fsd: boolean
+  semantic: boolean
   webpack: boolean
   exposes: _file_manifest_data
   remotes: _file_manifest_data
@@ -31,8 +34,6 @@ export type _file_manifest = Partial<{
   not_gitignore: string[]
   aliases: _aliases
   src: string
-  dependencies: string[]
-  dev_dependencies: string[]
   scripts: _scripts
   default_scripts: boolean
   module_path: string

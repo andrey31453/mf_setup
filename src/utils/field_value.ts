@@ -9,7 +9,7 @@ import {
   tab_before,
 } from '~decorators'
 import { iterator } from './iterator'
-import { deep_merge } from './deep_merge'
+import { merge } from './merge'
 import { is_mergeable } from './type'
 
 //
@@ -57,7 +57,7 @@ class __Union_Values implements _value<_nullable_data> {
     if (!is_mergeable(formated_values)) return formated_values
 
     // @ts-ignore
-    return deep_merge(...formated_values)
+    return merge(...formated_values)
   }
 }
 

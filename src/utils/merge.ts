@@ -1,5 +1,5 @@
 import { type_of, type_is, is_mergeable } from './type'
-import { deep_copy } from './deep_copy'
+import { copy } from './copy'
 
 type _mergeable = [] | {}
 
@@ -35,17 +35,17 @@ export const merge_values = <T extends any>(...values: T[]) => {
 
   // not any merged value
   // @ts-ignore
-  if (filtered_values.length === 1) return deep_copy(last_believable_value)
+  if (filtered_values.length === 1) return copy(last_believable_value)
 
   // @ts-ignore
-  return deep_merge(...filtered_values)
+  return merge(...filtered_values)
 }
 
 //
 //
 //
 
-export const deep_merge = <T extends _mergeable>(...args: T[]): T => {
+export const merge = <T extends _mergeable>(...args: T[]): T => {
   return get_keys(...args).reduce(
     (result, key) => {
       const values = args.map((arg) => arg[<keyof T>key])
