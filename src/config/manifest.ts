@@ -54,7 +54,7 @@ export const configures: _configure[] = [
       webpack: false,
       semantic: true,
       arora: false,
-      compose: false,
+      compose: true,
       default_scripts: false,
       not_gitignore: [],
       node: false,

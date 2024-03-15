@@ -15,20 +15,22 @@
 
 2. chmod
 
-3. docker
+3. npm i in all modules
+   l
+4. docker
 
    - :ro
    - change package dont change image
    - change webpack dont change image
 
-4. check work setup in single module
+5. check work setup in single module
 
-5. add docker paths for vs code
+6. add docker paths for vs code
 
-6. if not file => error
+7. if not file => error
    example not .bd/...
 
-7. readme
+8. readme
 
    - npm
    - builder
