@@ -18,6 +18,8 @@ export type _file_manifest = Partial<{
   name: string
   rate: number
   react: boolean
+  builder: boolean
+  setup: boolean
   npm: boolean
   arora: boolean
   node: boolean

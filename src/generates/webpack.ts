@@ -30,7 +30,7 @@ const iterators = {
 //
 //
 
-export class Webpack_Config implements _data_creator {
+export class Webpack implements _data_creator {
   constructor() {}
 
   create_data = (

@@ -1,11 +1,11 @@
 import { setup } from './setup'
 import { bootstrap } from './bootstrap'
-import { preset_files } from '~file_data_creators'
+import { generates } from '~generates'
 
 bootstrap(() =>
   setup({
     bd_name: 'preset',
-    generates: preset_files,
+    generates: generates.preset,
     not_gitignore: true,
   })
 )

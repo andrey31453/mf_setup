@@ -115,7 +115,7 @@ class Services implements _value<string> {
 //
 //
 
-export class Docker_Compose implements _data_creator {
+export class Compose implements _data_creator {
   constructor(private dockerfile: string) {}
 
   create_data = (

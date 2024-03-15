@@ -25,6 +25,15 @@
 
 5. add docker paths for vs code
 
+6. if not file => error
+   example not .bd/...
+
+7. readme
+
+   - npm
+   - builder
+   - service
+
 <!--  -->
 
 ## setup

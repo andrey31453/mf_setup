@@ -1,27 +1,3 @@
 {
-  "name": "setup",
-  "node": true,
-  "arora": false,
-  "react": false,
-  "webpack": false,
-  "compose": false,
-  "default_scripts": false,
-  "fsd": false,
-  "scripts": {
-    "init": "ts-node ./src/init.ts",
-    "preset": "ts-node ./src/preset.ts"
-  },
-
-  "not_gitignore": ["tsconfig.json", "package.json"],
-  "excludes": ["readme.md", "dev.sh"],
-  "aliases": {
-    "~types": "types",
-    "~config": "config",
-    "~decorators": "decorators",
-    "~file_data_creators": "file_data_creators",
-    "~modules": "modules",
-    "~utils": "utils",
-    "~bd": "bd",
-    "~fs": "fs"
-  }
+  "setup": true
 }

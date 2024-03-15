@@ -1,5 +1,5 @@
 import { read_file } from '~fs'
-import { paths as p, home_dir, default_manifest } from '~config'
+import { paths as p, home_dir, configures } from '~config'
 import {
   _file_manifest,
   _manifest,
@@ -14,15 +14,28 @@ import { d, sort, add_key } from '~decorators'
 //
 //
 
+class Configure implements _value<_file_manifest> {
+  readonly value
+
+  constructor(m: _file_manifest) {
+    this.value = configures.find((c) => c.is(m))?.configure
+  }
+}
+
+//
+//
+//
+
 class Default_Manifest implements _value<_file_manifest> {
   readonly value
 
-  constructor(manifest: _file_manifest) {
-    this.value = Object.keys(default_manifest).reduce(
+  constructor(m: _file_manifest) {
+    const configure = new Configure(m).value
+    this.value = Object.keys(configure).reduce(
       // @ts-ignore
       (acc, key: keyof _file_manifest) => ({
         ...acc,
-        [key]: manifest[key] ?? default_manifest[key],
+        [key]: m[key] ?? configure[key],
       }),
       {}
     )

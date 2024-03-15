@@ -4,9 +4,6 @@
 package-lock.json
 node_modules
 
-# bd
-/src/.bd/*
-
 # mac
 /**/*.DS_Store
 
@@ -36,3 +33,4 @@ lerna-debug.log*
 .eslintrc
 .prettierignore
 .prettierrc.json
+../setup.sh

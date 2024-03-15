@@ -1,5 +1,5 @@
 import { Manifests, Copy_M_Dir, Generate_M_File, M_Env, Format } from '~modules'
-import { gitignore as gitignore_data_creators } from '~file_data_creators'
+import { generates as g } from '~generates'
 import { Generate } from '~bd'
 import { _setup_params } from '~types'
 
@@ -18,6 +18,6 @@ export const setup = ({
 
   generate.set()
 
-  !not_gitignore && generate_m_file.generate(gitignore_data_creators)
+  !not_gitignore && generate_m_file.generate(g.gitignore)
   new Format().format()
 }
