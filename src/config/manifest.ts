@@ -83,6 +83,7 @@ export const configures: _configure[] = [
       compose: false,
       default_scripts: false,
       not_gitignore: [],
+      excludes: ['package.json'],
       node: false,
     },
   },
