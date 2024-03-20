@@ -1,27 +1,14 @@
-import {
-  _file_manifest,
-  _npm_manifest,
-  _value,
-  _npm_update_versions,
-} from '~types'
-
-import {
-  File_Manifests,
-  Manifest_Path,
-  BD_Version,
-  Package_Version,
-} from './utils'
+import { _file_manifest, _value, _npm_updates, _manifest } from '~types'
 
 //
 //
 //
 
-class NPM_File_Manifests implements _value<_file_manifest[]> {
+class NPM_Manifests implements _value<_file_manifest[]> {
   readonly value
 
-  constructor() {
-    const file_manifests = new File_Manifests().value
-    this.value = file_manifests.filter((m) => m.npm)
+  constructor(manifests: _manifest[]) {
+    this.value = manifests.filter((m) => m.npm)
   }
 }
 
@@ -29,39 +16,17 @@ class NPM_File_Manifests implements _value<_file_manifest[]> {
 //
 //
 
-class NPM_Manifests implements _value<_npm_manifest[]> {
+class NPM_Updates implements _value<_npm_updates[]> {
   readonly value
 
-  constructor(npm_file_manifests: _file_manifest[]) {
-    this.value = npm_file_manifests.map(this.npm_manifest)
-  }
-
-  npm_manifest = (m: _file_manifest) => {
-    const path = new Manifest_Path(m).value
-
-    return {
-      ...m,
-      bd_version: new BD_Version(path).value,
-      package_version: new Package_Version(path).value,
-    }
-  }
-}
-
-//
-//
-//
-
-class Not_Sync_Versions implements _value<_npm_update_versions[]> {
-  readonly value
-
-  constructor(npm_manifests: _npm_manifest[]) {
+  constructor(npm_manifests: _manifest[]) {
     this.value = npm_manifests
       .map((m) =>
-        m.package_version === m.bd_version
+        m.versions.package === m.versions.bd
           ? null
           : {
               name: m.name,
-              version: m.package_version,
+              version: m.versions.package,
             }
       )
       .filter(Boolean)
@@ -72,13 +37,17 @@ class Not_Sync_Versions implements _value<_npm_update_versions[]> {
 //
 //
 
-export class NPM_Update_Versions implements _value<_npm_update_versions[]> {
-  readonly value
+interface _npm {
+  updates: _npm_updates[]
+  manifests: _value<_manifest[]>
+}
 
-  constructor() {
-    const npm_file_manifests = new NPM_File_Manifests().value
-    const npm_manifests = new NPM_Manifests(npm_file_manifests).value
+export class NPM implements _npm {
+  updates
+  manifests
 
-    this.value = new Not_Sync_Versions(npm_manifests).value
+  constructor(manifests: _value<_manifest[]>) {
+    this.manifests = new NPM_Manifests(manifests.value)
+    this.updates = new NPM_Updates(this.manifests.value).value
   }
 }

@@ -14,16 +14,13 @@ export interface _scripts {
   [key: string]: string
 }
 
-export interface _file_npm_manifest {
+export type _file_manifest = Partial<{
   name: string
   version: string
   main: string
   repository: string
   npm: boolean
   module_path: string
-}
-
-export interface _file_not_npm_manifest {
   rate: number
   react: boolean
   builder: boolean
@@ -45,34 +42,32 @@ export interface _file_not_npm_manifest {
   src: string
   scripts: _scripts
   default_scripts: boolean
-}
-
-export type _file_manifest = Partial<
-  _file_npm_manifest & _file_not_npm_manifest
->
-
-export type _npm_manifest = _file_npm_manifest & {
-  bd_version: string
-  package_version: string
-}
-
-export interface _npm_update_versions {
-  name: string
-  version: string
-}
+}>
 
 export interface _domens {
   dev: string
   prod: string
 }
 
+interface _versions {
+  manifest: string
+  bd: string
+  package: string
+}
+
 export interface _calculate_manifest {
   path: string
   port: number
   domens: _domens
+  versions: _versions
 }
 
 export interface _manifest extends _file_manifest, _calculate_manifest {}
+
+export interface _npm_updates {
+  name: string
+  version: string
+}
 
 export interface _uri {
   [key: string]: number

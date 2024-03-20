@@ -5,7 +5,7 @@ import { packages } from '~config'
 //
 //
 
-export class Config_Version implements _value<string> {
+export class Arora_Version implements _value<string> {
   readonly value
 
   constructor(file_manifest: _file_manifest) {

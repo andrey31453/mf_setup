@@ -12,7 +12,8 @@ import {
   File_Manifests,
   Manifest_Path,
   BD_Version,
-  Config_Version,
+  Arora_Version,
+  Package_Version,
 } from './utils'
 
 //
@@ -77,14 +78,15 @@ class With_Defaults implements _value<_file_manifest[]> {
 //
 //
 
-class Version implements _value<string> {
+class Manifest_Version implements _value<string> {
   readonly value
 
   constructor(file_manifest: _file_manifest, path: string) {
     this.value =
       new BD_Version(path).value ||
       file_manifest.version ||
-      new Config_Version(file_manifest).value
+      new Arora_Version(file_manifest).value ||
+      '0.0.1'
   }
 }
 
@@ -101,13 +103,16 @@ class Calculate_Manifest implements _value<_calculate_manifest> {
     current_position: number
   ) {
     const path = new Manifest_Path(file_manifest).value
-    const version = new Version(file_manifest, path).value
 
     this.value = {
       path,
       port: +env.host_port + current_position,
       domens: env.domens,
-      version,
+      versions: {
+        manifest: new Manifest_Version(file_manifest, path).value,
+        bd: new BD_Version(path).value,
+        package: new Package_Version(path).value,
+      },
     }
   }
 }

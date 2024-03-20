@@ -73,5 +73,7 @@ export const generates: _generates = {
 
   preset: [creators.ts_config, creators.package],
 
+  update: [creators.version],
+
   gitignore: [creators.gitignore],
 }

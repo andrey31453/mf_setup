@@ -1,10 +1,10 @@
-import { _file_manifest, _manifest, _file_npm_manifest } from '~types'
+import { _file_manifest, _manifest } from '~types'
 
 //
 //
 //
 
-export const npm_required_keys: (keyof _file_npm_manifest)[] = [
+export const npm_required_keys: (keyof _file_manifest)[] = [
   'name',
   'version',
   'main',
