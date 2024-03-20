@@ -1,4 +1,15 @@
-import { _file_manifest, _manifest } from '~types'
+import { _file_manifest, _manifest, _file_npm_manifest } from '~types'
+
+//
+//
+//
+
+export const npm_required_keys: (keyof _file_npm_manifest)[] = [
+  'name',
+  'version',
+  'main',
+  'repository',
+]
 
 //
 //
@@ -16,6 +27,7 @@ export const configures: _configure[] = [
     configure: {
       name: 'setup',
       node: true,
+      builder: true,
       arora: false,
       react: false,
       webpack: false,
@@ -23,23 +35,6 @@ export const configures: _configure[] = [
       semantic: true,
       default_scripts: false,
       fsd: false,
-      scripts: {
-        init: 'ts-node ./src/init.ts',
-        preset: 'ts-node ./src/preset.ts',
-      },
-
-      not_gitignore: ['tsconfig.json', 'package.json', '.bd'],
-      excludes: ['readme.md', 'dev.sh'],
-      aliases: {
-        '~types': 'types',
-        '~config': 'config',
-        '~decorators': 'decorators',
-        '~generates': 'generates',
-        '~modules': 'modules',
-        '~utils': 'utils',
-        '~bd': 'bd',
-        '~fs': 'fs',
-      },
     },
   },
 
@@ -56,16 +51,7 @@ export const configures: _configure[] = [
       arora: false,
       compose: true,
       default_scripts: false,
-      not_gitignore: [],
       node: false,
-      includes: [
-        '.gitignore',
-        'dev.sh',
-        'setup.sh',
-        'readme.md',
-        'package.json',
-        'dev.docker-compose.yml',
-      ],
     },
   },
 
@@ -73,7 +59,6 @@ export const configures: _configure[] = [
   {
     is: (m) => !!m.npm,
     configure: {
-      name: "DON'T HAVE NAME",
       rate: 0,
       react: false,
       fsd: false,
@@ -82,8 +67,7 @@ export const configures: _configure[] = [
       arora: false,
       compose: false,
       default_scripts: false,
-      not_gitignore: [],
-      excludes: ['package.json'],
+      not_gitignore: ['package.json'],
       node: false,
     },
   },

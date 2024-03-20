@@ -58,6 +58,6 @@ lerna-debug.log*
 /.vscode
 
 # generate
-${paths.dir.bd}
+${paths.dir.bd.replace(/^\.\//, '')}
 ${new Generates(m, new BDs().get()).value}`
 }

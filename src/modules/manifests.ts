@@ -1,5 +1,4 @@
-import { read_file } from '~fs'
-import { paths as p, home_dir, configures } from '~config'
+import { paths as p, configures, packages } from '~config'
 import {
   _file_manifest,
   _manifest,
@@ -7,8 +6,14 @@ import {
   _m_env,
   _calculate_manifest,
 } from '~types'
-import { Search_Files } from '~utils'
-import { d, sort, add_key } from '~decorators'
+import { d, sort } from '~decorators'
+
+import {
+  File_Manifests,
+  Manifest_Path,
+  BD_Version,
+  Config_Version,
+} from './utils'
 
 //
 //
@@ -46,28 +51,10 @@ class Default_Manifest implements _value<_file_manifest> {
 //
 //
 
-class File_Manifests implements _value<_file_manifest[]> {
-  readonly value: _file_manifest[] = []
-
-  constructor(paths: string[]) {
-    this.value = paths.map(this.create_manifest)
-  }
-
-  @d(add_key('module_path'))
-  private create_manifest(module_path: string): _file_manifest {
-    return read_file(module_path, 'json') as unknown as _file_manifest
-  }
-}
-
-//
-//
-//
-
-class With_Default implements _value<_file_manifest[]> {
+class With_Defaults implements _value<_file_manifest[]> {
   readonly value
 
-  constructor(paths: string[]) {
-    const file_manifests = new File_Manifests(paths).value
+  constructor(file_manifests: _file_manifest[]) {
     this.value = this.with_default(file_manifests)
   }
 
@@ -90,17 +77,37 @@ class With_Default implements _value<_file_manifest[]> {
 //
 //
 
+class Version implements _value<string> {
+  readonly value
+
+  constructor(file_manifest: _file_manifest, path: string) {
+    this.value =
+      new BD_Version(path).value ||
+      file_manifest.version ||
+      new Config_Version(file_manifest).value
+  }
+}
+
+//
+//
+//
+
 class Calculate_Manifest implements _value<_calculate_manifest> {
   readonly value
 
-  constructor(manifest: _file_manifest, env: _m_env, current_position: number) {
+  constructor(
+    file_manifest: _file_manifest,
+    env: _m_env,
+    current_position: number
+  ) {
+    const path = new Manifest_Path(file_manifest).value
+    const version = new Version(file_manifest, path).value
+
     this.value = {
-      path: manifest.module_path?.replace(
-        new RegExp(`/${p.file.manifest}`),
-        ''
-      ),
+      path,
       port: +env.host_port + current_position,
       domens: env.domens,
+      version,
     }
   }
 }
@@ -109,7 +116,7 @@ class Calculate_Manifest implements _value<_calculate_manifest> {
 //
 //
 
-class With_Calculate implements _value<_manifest[]> {
+class With_Calculates implements _value<_manifest[]> {
   readonly value
 
   constructor(with_default: _file_manifest[], env: _m_env) {
@@ -137,13 +144,11 @@ class With_Calculate implements _value<_manifest[]> {
 //
 
 export class Manifests implements _value<_manifest[]> {
-  readonly value: _manifest[] = []
+  readonly value
 
   constructor(m_env: _value<_m_env>) {
-    const manifest_paths: string[] = new Search_Files(home_dir, p.file.manifest)
-      .value
-    const with_default = new With_Default(manifest_paths).value
-
-    this.value = new With_Calculate(with_default, m_env.value).value
+    const file_manifests = new File_Manifests().value
+    const with_defaults = new With_Defaults(file_manifests).value
+    this.value = new With_Calculates(with_defaults, m_env.value).value
   }
 }

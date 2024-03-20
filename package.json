@@ -1,7 +1,8 @@
 {
   "scripts": {
     "init": "ts-node ./src/init.ts",
-    "preset": "ts-node ./src/preset.ts"
+    "preset": "ts-node ./src/preset.ts",
+    "update": "ts-node ./src/update.ts"
   },
   "dependencies": {
     "@types/node": "^20.11.21",
@@ -12,10 +13,12 @@
   "devDependencies": {
     "prettier": "^3.2.5"
   },
-  "browserslist": [
-    "defaults and fully supports es6"
-  ],
   "name": "setup",
   "version": "1.0.0",
-  "license": "MIT"
+  "description": "awesome repository",
+  "author": "andrey31453@gmail.com",
+  "license": "MIT",
+  "browserslist": [
+    "defaults and fully supports es6"
+  ]
 }

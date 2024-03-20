@@ -14,13 +14,20 @@ export interface _scripts {
   [key: string]: string
 }
 
-export type _file_manifest = Partial<{
+export interface _file_npm_manifest {
   name: string
+  version: string
+  main: string
+  repository: string
+  npm: boolean
+  module_path: string
+}
+
+export interface _file_not_npm_manifest {
   rate: number
   react: boolean
   builder: boolean
   setup: boolean
-  npm: boolean
   arora: boolean
   node: boolean
   compose: boolean
@@ -38,8 +45,21 @@ export type _file_manifest = Partial<{
   src: string
   scripts: _scripts
   default_scripts: boolean
-  module_path: string
-}>
+}
+
+export type _file_manifest = Partial<
+  _file_npm_manifest & _file_not_npm_manifest
+>
+
+export type _npm_manifest = _file_npm_manifest & {
+  bd_version: string
+  package_version: string
+}
+
+export interface _npm_update_versions {
+  name: string
+  version: string
+}
 
 export interface _domens {
   dev: string

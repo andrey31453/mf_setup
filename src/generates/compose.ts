@@ -56,13 +56,33 @@ class Services_With_Docker implements _value<_manifest[]> {
 //
 //
 
-interface _service_params {
+interface _compose_params {
+  service_name: string
+  volume_name: string
   port: string
-  name: string
   workdir: string
   context: string
   dockerfile: string
 }
+
+class Compose_Params implements _value<_compose_params> {
+  readonly value
+
+  constructor(m: _manifest, manifest: _manifest, dockerfile: string) {
+    this.value = {
+      service_name: `s_${manifest.name}`,
+      volume_name: `v_${manifest.name}`,
+      port: `${manifest.port}`,
+      workdir: `/files/${manifest.name}`,
+      context: `./${manifest.path.replace(new RegExp(m.path), '').replace(/^\//, '')}`,
+      dockerfile,
+    }
+  }
+}
+
+//
+//
+//
 
 class Services implements _value<string> {
   readonly value
@@ -70,33 +90,22 @@ class Services implements _value<string> {
   constructor(m: _manifest, manifests: _manifest[], dockerfile: string) {
     this.value = manifests
       .map((manifest) =>
-        this.service(this.service_params(m, manifest, dockerfile))
+        this.service(new Compose_Params(m, manifest, dockerfile).value)
       )
       .join('')
   }
 
-  private service_params = (
-    m: _manifest,
-    manifest: _manifest,
-    dockerfile: string
-  ): _service_params => ({
-    name: `s_${manifest.name}`,
-    port: `${manifest.port}`,
-    workdir: `/files/${manifest.name}`,
-    context: `./${manifest.path.replace(new RegExp(m.path), '').replace(/^\//, '')}`,
-    dockerfile,
-  })
-
   @d(tab_after(0))
   @d(tab_before(1))
   private service({
-    name,
+    service_name,
+    volume_name,
     port,
     workdir,
     context,
     dockerfile,
-  }: _service_params): string {
-    return `${name}:
+  }: _compose_params): string {
+    return `${service_name}:
     build:
       context: ${context}
       dockerfile: ${dockerfile}
@@ -106,8 +115,35 @@ class Services implements _value<string> {
       - ${port}:${port}
     volumes:
       - ${context}:${workdir}
-      - ${workdir}/node_modules
+      - ${volume_name}:${workdir}/node_modules
     restart: always`
+  }
+}
+
+//
+//
+//
+
+class Volumes implements _value<string> {
+  readonly value
+
+  constructor(m: _manifest, manifests: _manifest[], dockerfile: string) {
+    this.value = manifests
+      .map((manifest) =>
+        this.volume(new Compose_Params(m, manifest, dockerfile).value)
+      )
+      .join('')
+  }
+
+  @d(tab_after(0))
+  @d(tab_before(1))
+  private volume({ volume_name, context }: _compose_params): string {
+    return `${volume_name}:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${context}/node_modules`
   }
 }
 
@@ -132,6 +168,8 @@ export class Compose implements _data_creator {
 
     return `version: '3'
 
-services:${new Services(m, services_with_docker.value, this.dockerfile).value}`
+services:${new Services(m, services_with_docker.value, this.dockerfile).value}
+
+volumes:${new Volumes(m, services_with_docker.value, this.dockerfile).value}`
   }
 }

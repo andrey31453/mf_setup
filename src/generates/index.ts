@@ -6,6 +6,7 @@ import { Compose } from './compose'
 import { Webpack } from './webpack'
 import { TS_Config } from './ts_config'
 import { Package } from './package'
+import { Version } from './version'
 
 //
 //
@@ -41,6 +42,11 @@ const creators: _creators = {
     file_name: paths.file.package,
   },
 
+  version: {
+    data_creator: new Version(),
+    file_name: paths.file.version,
+  },
+
   gitignore: {
     data_creator: new Gitignore(),
     file_name: paths.file.gitignore,
@@ -61,6 +67,7 @@ export const generates: _generates = {
     creators.webpack,
     creators.compose_dev,
     creators.ts_config,
+    creators.version,
     creators.package,
   ],
 

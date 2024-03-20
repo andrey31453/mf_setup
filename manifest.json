@@ -1,3 +1,19 @@
 {
-  "setup": true
+  "setup": true,
+  "scripts": {
+    "init": "ts-node ./src/init.ts",
+    "preset": "ts-node ./src/preset.ts",
+    "update": "ts-node ./src/update.ts"
+  },
+  "not_gitignore": ["tsconfig.json", "package.json", ".bd"],
+  "aliases": {
+    "~types": "types",
+    "~config": "config",
+    "~decorators": "decorators",
+    "~generates": "generates",
+    "~modules": "modules",
+    "~utils": "utils",
+    "~bd": "bd",
+    "~fs": "fs"
+  }
 }

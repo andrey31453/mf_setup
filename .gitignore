@@ -29,8 +29,10 @@ lerna-debug.log*
 /.vscode
 
 # generate
-./src/.bd
+src/.bd
 .eslintrc
 .prettierignore
 .prettierrc.json
 ../setup.sh
+setup.sh
+update.sh

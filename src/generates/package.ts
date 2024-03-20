@@ -58,11 +58,15 @@ export class Package implements _data_creator {
       iterator: name_value_iterator,
     }).value
   }
-  "browserslist": [
+  "name": "${m.name}",
+	"version": "${m.version || '1.0.0'}",
+	${m.main ? `"main": "${m.main}",` : ''}
+	${m.repository ? `"repository": "${m.repository}",` : ''}
+  "description": "awesome repository",
+  "author": "andrey31453@gmail.com",
+	"license": "MIT",
+	"browserslist": [
     "defaults and fully supports es6"
-  ],
-	"name": "${m.name}",
-	"version": "1.0.0",
-	"license": "MIT"
+  ]
 }`
 }
